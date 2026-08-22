@@ -1,6 +1,8 @@
 export type CubicBezier = readonly [number, number, number, number]
 
-export const easeInQuad = [0.55, 0.085, 0.68, 0.53] as const satisfies CubicBezier
+export const easeInQuad = [
+  0.55, 0.085, 0.68, 0.53,
+] as const satisfies CubicBezier
 export const easeInCubic = [
   0.55, 0.055, 0.675, 0.19,
 ] as const satisfies CubicBezier
@@ -13,7 +15,9 @@ export const easeInQuint = [
 export const easeInExpo = [
   0.95, 0.05, 0.795, 0.035,
 ] as const satisfies CubicBezier
-export const easeInCirc = [0.6, 0.04, 0.98, 0.335] as const satisfies CubicBezier
+export const easeInCirc = [
+  0.6, 0.04, 0.98, 0.335,
+] as const satisfies CubicBezier
 
 export const easeOutQuad = [
   0.25, 0.46, 0.45, 0.94,
@@ -36,9 +40,7 @@ export const easeInOutQuad = [
 export const easeInOutCubic = [
   0.645, 0.045, 0.355, 1,
 ] as const satisfies CubicBezier
-export const easeInOutQuart = [
-  0.77, 0, 0.175, 1,
-] as const satisfies CubicBezier
+export const easeInOutQuart = [0.77, 0, 0.175, 1] as const satisfies CubicBezier
 export const easeInOutQuint = [0.86, 0, 0.07, 1] as const satisfies CubicBezier
 export const easeInOutExpo = [1, 0, 0, 1] as const satisfies CubicBezier
 export const easeInOutCirc = [

@@ -57,7 +57,7 @@ function PopoverContent({
       <BasePopover.Positioner side={side} align={align} sideOffset={sideOffset}>
         <BasePopover.Popup
           className={cn(
-            "z-(--z-popover) border-border bg-surface rounded-md border p-4 shadow-md",
+            "p-4 z-(--z-popover) rounded-md border border-border bg-surface shadow-md",
             "transition-[opacity,scale] duration-200",
             "data-starting-style:scale-95 data-starting-style:opacity-0",
             "data-ending-style:scale-95 data-ending-style:opacity-0",

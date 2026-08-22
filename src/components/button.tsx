@@ -35,17 +35,17 @@ export function Button({
   return (
     <BaseButton
       className={cn(
-        "focus-visible:outline-accent inline-flex cursor-pointer items-center justify-center font-medium transition-[colors,transform] focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50",
+        "font-medium inline-flex cursor-pointer items-center justify-center transition-[colors,transform] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-95 disabled:pointer-events-none disabled:opacity-50",
         variant === "primary" &&
           "bg-accent text-accent-foreground hover:bg-accent/90",
         variant === "secondary" &&
-          "border-border bg-surface text-text hover:border-border-strong hover:bg-surface-soft border",
+          "border border-border bg-surface text-text hover:border-border-strong hover:bg-surface-soft",
         variant === "ghost" &&
           "text-text-secondary hover:bg-surface-soft hover:text-text",
-        variant === "destructive" && "bg-danger hover:bg-danger/90 text-white",
-        size === "sm" && "h-8 gap-1.5 rounded-md px-3 text-sm",
-        size === "md" && "h-9 gap-2 rounded-md px-4 text-sm",
-        size === "lg" && "h-10 gap-2 rounded-md px-5 text-base",
+        variant === "destructive" && "text-white bg-danger hover:bg-danger/90",
+        size === "sm" && "h-8 gap-1.5 px-3 text-sm rounded-md",
+        size === "md" && "h-9 gap-2 px-4 text-sm rounded-md",
+        size === "lg" && "h-10 gap-2 px-5 text-base rounded-md",
         size === "icon" && "size-9 rounded-md",
         className
       )}

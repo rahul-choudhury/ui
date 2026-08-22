@@ -43,7 +43,7 @@ function TabsList({ className, children, ...props }: TabsListProps) {
     <BaseTabs.List className={cn("relative flex", className)} {...props}>
       {children}
       <BaseTabs.Indicator
-        className="bg-accent absolute bottom-0 h-0.5"
+        className="bottom-0 h-0.5 absolute bg-accent"
         render={({
           onDrag: _onDrag,
           onDragEnd: _onDragEnd,
@@ -74,10 +74,10 @@ function Tab({ className, ...props }: TabProps) {
   return (
     <BaseTabs.Tab
       className={cn(
-        "text-text-muted px-3 py-2 text-sm font-medium transition-colors",
+        "px-3 py-2 text-sm font-medium text-text-muted transition-colors",
         "hover:text-text",
         "aria-selected:text-text",
-        "focus-visible:outline-accent focus-visible:outline-2 focus-visible:-outline-offset-2",
+        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
         className
       )}
       {...props}

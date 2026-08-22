@@ -52,7 +52,7 @@ function DialogContent({ className, children, ...props }: DialogContentProps) {
     <BaseDialog.Portal>
       <BaseDialog.Backdrop
         className={cn(
-          "z-(--z-overlay) fixed inset-0 bg-black/40",
+          "inset-0 bg-black/40 fixed z-(--z-overlay)",
           "transition-opacity duration-300",
           "data-starting-style:opacity-0",
           "data-ending-style:opacity-0"
@@ -60,7 +60,7 @@ function DialogContent({ className, children, ...props }: DialogContentProps) {
       />
       <BaseDialog.Popup
         className={cn(
-          "z-(--z-modal) bg-surface shadow-overlay fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg p-6",
+          "max-w-md p-6 fixed top-1/2 left-1/2 z-(--z-modal) w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface shadow-overlay",
           "transition-[opacity,scale] duration-300",
           "data-starting-style:scale-95 data-starting-style:opacity-0",
           "data-ending-style:scale-95 data-ending-style:opacity-0",
@@ -81,7 +81,7 @@ type DialogTitleProps = React.ComponentProps<typeof BaseDialog.Title>
 function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
     <BaseDialog.Title
-      className={cn("text-text text-lg font-medium", className)}
+      className={cn("text-lg font-medium text-text", className)}
       {...props}
     />
   )
@@ -96,7 +96,7 @@ type DialogDescriptionProps = React.ComponentProps<
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
   return (
     <BaseDialog.Description
-      className={cn("text-text-secondary mt-1 text-sm", className)}
+      className={cn("mt-1 text-sm text-text-secondary", className)}
       {...props}
     />
   )

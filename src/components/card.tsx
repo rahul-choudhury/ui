@@ -30,8 +30,8 @@ export function Card({ variant = "default", className, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "bg-surface rounded-md",
-        variant === "bordered" && "border-border border",
+        "rounded-md bg-surface",
+        variant === "bordered" && "border border-border",
         variant === "elevated" && "shadow-md",
         className
       )}

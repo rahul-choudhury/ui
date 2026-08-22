@@ -19,7 +19,7 @@ type SkeletonProps = React.ComponentProps<"div">
 export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
-      className={cn("bg-surface-soft animate-pulse rounded-md", className)}
+      className={cn("animate-pulse rounded-md bg-surface-soft", className)}
       aria-hidden="true"
       {...props}
     />

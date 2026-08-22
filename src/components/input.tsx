@@ -45,7 +45,7 @@ export function Input({ size = "md", className, ...props }: InputProps) {
   return (
     <BaseInput
       className={cn(
-        "border-border bg-surface text-text w-full rounded-md border transition-[border-color,box-shadow]",
+        "w-full rounded-md border border-border bg-surface text-text transition-[border-color,box-shadow]",
         "placeholder:text-text-muted",
         "hover:border-border-strong",
         "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",

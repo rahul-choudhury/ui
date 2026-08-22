@@ -65,7 +65,7 @@ function SelectTrigger({
     <SelectSizeContext value={size}>
       <BaseSelect.Trigger
         className={cn(
-          "border-border bg-surface text-text inline-flex w-full items-center justify-between rounded-md border transition-[color,box-shadow]",
+          "inline-flex w-full items-center justify-between rounded-md border border-border bg-surface text-text transition-[color,box-shadow]",
           "hover:border-border-strong",
           "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",
           "disabled:cursor-not-allowed disabled:opacity-50",
@@ -102,7 +102,7 @@ function SelectContent({ className, children, ...props }: SelectContentProps) {
       <BaseSelect.Positioner>
         <BaseSelect.Popup
           className={cn(
-            "z-(--z-dropdown) min-w-(--anchor-width) border-border bg-surface max-h-60 overflow-auto rounded-md border shadow-md",
+            "max-h-60 z-(--z-dropdown) min-w-(--anchor-width) overflow-auto rounded-md border border-border bg-surface shadow-md",
             className
           )}
           {...props}
@@ -124,7 +124,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
   return (
     <BaseSelect.Item
       className={cn(
-        "text-text flex cursor-pointer items-center justify-between outline-none transition-colors",
+        "flex cursor-pointer items-center justify-between text-text transition-colors outline-none",
         "data-highlighted:bg-surface-soft",
         sizeStyles[size],
         className

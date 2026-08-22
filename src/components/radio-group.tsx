@@ -38,7 +38,7 @@ type RadioGroupProps = React.ComponentProps<typeof BaseRadioGroup>
 function RadioGroup({ className, ...props }: RadioGroupProps) {
   return (
     <BaseRadioGroup
-      className={cn("flex flex-col gap-2", className)}
+      className={cn("gap-2 flex flex-col", className)}
       {...props}
     />
   )
@@ -52,9 +52,9 @@ function RadioItem({ className, ...props }: RadioItemProps) {
   return (
     <BaseRadio.Root
       className={cn(
-        "border-border bg-surface inline-flex size-4 shrink-0 items-center justify-center rounded-full border transition-colors",
+        "size-4 inline-flex shrink-0 items-center justify-center rounded-full border border-border bg-surface transition-colors",
         "hover:border-border-strong",
-        "focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         "data-checked:border-accent",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className
@@ -62,7 +62,7 @@ function RadioItem({ className, ...props }: RadioItemProps) {
       {...props}
     >
       <BaseRadio.Indicator className="flex items-center justify-center">
-        <span className="bg-accent size-2 rounded-full" />
+        <span className="size-2 rounded-full bg-accent" />
       </BaseRadio.Indicator>
     </BaseRadio.Root>
   )

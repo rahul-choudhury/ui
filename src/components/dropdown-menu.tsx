@@ -61,7 +61,7 @@ function DropdownMenuContent({
       <BaseMenu.Positioner side={side} align={align} sideOffset={sideOffset}>
         <BaseMenu.Popup
           className={cn(
-            "z-(--z-dropdown) border-border bg-surface min-w-40 rounded-md border py-1 shadow-md",
+            "min-w-40 py-1 z-(--z-dropdown) rounded-md border border-border bg-surface shadow-md",
             "transition-[opacity,scale] duration-200",
             "data-starting-style:scale-95 data-starting-style:opacity-0",
             "data-ending-style:scale-95 data-ending-style:opacity-0",
@@ -90,7 +90,7 @@ function DropdownMenuItem({
   return (
     <BaseMenu.Item
       className={cn(
-        "text-text flex w-full cursor-pointer items-center px-3 py-1.5 text-sm outline-none transition-colors",
+        "px-3 py-1.5 text-sm flex w-full cursor-pointer items-center text-text transition-colors outline-none",
         "data-highlighted:bg-surface-soft",
         className
       )}
@@ -110,7 +110,7 @@ function DropdownMenuSeparator({
 }: DropdownMenuSeparatorProps) {
   return (
     <hr
-      className={cn("bg-border my-1 h-px border-none", className)}
+      className={cn("my-1 h-px border-none bg-border", className)}
       {...props}
     />
   )

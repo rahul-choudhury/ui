@@ -39,7 +39,7 @@ export function Textarea({ size = "md", className, ...props }: TextareaProps) {
     <BaseField.Control
       render={<textarea />}
       className={cn(
-        "border-border bg-surface text-text w-full resize-y rounded-md border transition-[border-color,box-shadow]",
+        "w-full resize-y rounded-md border border-border bg-surface text-text transition-[border-color,box-shadow]",
         "placeholder:text-text-muted",
         "hover:border-border-strong",
         "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",

@@ -39,12 +39,12 @@ export function NotFound({
 }: NotFoundProps) {
   return (
     <div className={cn("flex flex-col", className)} {...props}>
-      <p className="text-text-muted font-mono text-sm">{code}</p>
-      <h1 className="text-text mt-3 font-serif text-4xl font-medium leading-[1.1] tracking-tight md:text-5xl">
+      <p className="text-sm font-mono text-text-muted">{code}</p>
+      <h1 className="mt-3 text-4xl font-medium tracking-tight md:text-5xl font-serif leading-[1.1] text-text">
         {title}
       </h1>
       {description && (
-        <p className="text-text-secondary mt-4 max-w-sm text-base">
+        <p className="mt-4 max-w-sm text-base text-text-secondary">
           {description}
         </p>
       )}

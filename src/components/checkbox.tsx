@@ -35,9 +35,9 @@ export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <BaseCheckbox.Root
       className={cn(
-        "border-border bg-surface inline-flex size-4 shrink-0 items-center justify-center rounded-sm border transition-colors",
+        "size-4 inline-flex shrink-0 items-center justify-center rounded-sm border border-border bg-surface transition-colors",
         "hover:border-border-strong",
-        "focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         "data-checked:border-accent data-checked:bg-accent",
         "data-indeterminate:border-accent data-indeterminate:bg-accent",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
@@ -47,7 +47,7 @@ export function Checkbox({ className, ...props }: CheckboxProps) {
     >
       <BaseCheckbox.Indicator
         keepMounted
-        className="text-accent-foreground data-unchecked:not-data-indeterminate:opacity-0 flex items-center justify-center"
+        className="flex items-center justify-center text-accent-foreground data-unchecked:not-data-indeterminate:opacity-0"
       >
         {props.indeterminate ? (
           <MinusIcon size={12} weight="bold" />

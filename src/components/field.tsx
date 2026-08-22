@@ -35,7 +35,7 @@ type FieldRootProps = React.ComponentProps<typeof BaseField.Root>
 function FieldRoot({ className, ...props }: FieldRootProps) {
   return (
     <BaseField.Root
-      className={cn("flex flex-col gap-1.5", className)}
+      className={cn("gap-1.5 flex flex-col", className)}
       {...props}
     />
   )
@@ -55,14 +55,14 @@ function FieldLabel({
   return (
     <BaseField.Label
       className={cn(
-        "text-text data-disabled:cursor-not-allowed data-disabled:opacity-50 text-sm font-medium",
+        "text-sm font-medium text-text data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className
       )}
       {...props}
     >
       {children}
       {required && (
-        <span className="text-danger ml-0.5" aria-hidden="true">
+        <span className="ml-0.5 text-danger" aria-hidden="true">
           *
         </span>
       )}
@@ -75,7 +75,7 @@ type FieldDescriptionProps = React.ComponentProps<typeof BaseField.Description>
 function FieldDescription({ className, ...props }: FieldDescriptionProps) {
   return (
     <BaseField.Description
-      className={cn("text-text-muted text-sm", className)}
+      className={cn("text-sm text-text-muted", className)}
       {...props}
     />
   )
@@ -86,7 +86,7 @@ type FieldItemProps = React.ComponentProps<typeof BaseField.Item>
 function FieldItem({ className, ...props }: FieldItemProps) {
   return (
     <BaseField.Item
-      className={cn("flex flex-col gap-1.5", className)}
+      className={cn("gap-1.5 flex flex-col", className)}
       {...props}
     />
   )
@@ -98,7 +98,7 @@ function FieldError({ className, ...props }: FieldErrorProps) {
   return (
     <BaseField.Error
       role="alert"
-      className={cn("text-danger text-sm", className)}
+      className={cn("text-sm text-danger", className)}
       {...props}
     />
   )
