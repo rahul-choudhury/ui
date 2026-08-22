@@ -102,6 +102,8 @@
  */
 
 :root {
+  color-scheme: light;
+
   /* -------------------------------------------------------------------
    * Motion Durations
    * ------------------------------------------------------------------- */
@@ -127,4 +129,47 @@
    * ------------------------------------------------------------------- */
   --layout-container: 56rem;
   --layout-prose: 65ch;
+}
+
+/*
+ * Dark theme
+ * Mirrors the light theme's neutral hierarchy and follows the operating
+ * system preference without requiring application-level theme state.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    /* Backgrounds */
+    --color-bg: #0a0a0a;
+    --color-surface: #171717;
+    --color-surface-soft: #262626;
+
+    /* Text */
+    --color-text: #fafafa;
+    --color-text-secondary: #d4d4d4;
+    --color-text-muted: #a3a3a3;
+
+    /* Borders */
+    --color-border: #404040;
+    --color-border-strong: #525252;
+
+    /* Accent */
+    --color-accent: #fafafa;
+    --color-accent-foreground: #171717;
+
+    /* Status */
+    --color-danger: #f87171;
+    --color-warning: #fbbf24;
+    --color-success: #4ade80;
+
+    /* Shadows need more opacity against dark backgrounds. */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.24);
+    --shadow-md:
+      0 2px 4px 0 rgb(0 0 0 / 0.28), 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow-lg:
+      0 4px 12px 0 rgb(0 0 0 / 0.32), 0 2px 4px 0 rgb(0 0 0 / 0.24);
+    --shadow-overlay:
+      0 8px 24px 0 rgb(0 0 0 / 0.4), 0 2px 8px 0 rgb(0 0 0 / 0.28);
+  }
 }

@@ -30,3 +30,7 @@ Import the package tokens from the app global CSS:
 @import "tailwindcss";
 @import "@rahul-choudhury/ui/tokens.css";
 ```
+
+The semantic color tokens automatically switch between coordinated light and
+dark themes using the operating system's `prefers-color-scheme` setting. No
+application-level theme provider or class is required.

@@ -4,7 +4,7 @@
  * Surface container for grouping related content.
  *
  * @variants
- * - `default`: plain white surface, no border or shadow
+ * - `default`: plain surface, no border or shadow
  * - `bordered`: 1px border for visual separation in dense layouts
  * - `elevated`: subtle shadow for floating/prominent content
  *
