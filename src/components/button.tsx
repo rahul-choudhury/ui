@@ -35,7 +35,7 @@ export function Button({
   return (
     <BaseButton
       className={cn(
-        "font-medium inline-flex cursor-pointer items-center justify-center transition-[colors,transform] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-95 disabled:pointer-events-none disabled:opacity-50",
+        "font-medium inline-flex cursor-pointer items-center justify-center transition-[color,background-color,border-color,transform] duration-(--duration-fast) ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-px motion-reduce:transition-none disabled:pointer-events-none disabled:opacity-50",
         variant === "primary" &&
           "bg-accent text-accent-foreground hover:bg-accent/90",
         variant === "secondary" &&
