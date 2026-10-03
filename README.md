@@ -32,5 +32,16 @@ Import the package tokens from the app global CSS:
 ```
 
 The semantic color tokens automatically switch between coordinated light and
-dark themes using the operating system's `prefers-color-scheme` setting. No
-application-level theme provider or class is required.
+dark themes using CSS `light-dark()` and `color-scheme: light dark` when no
+explicit theme is set. This follows the operating system's color preference
+without a media query. No application-level theme provider or class is required.
+
+To override the system preference, set `data-theme` on the root element:
+
+```html
+<html data-theme="light"></html>
+<!-- or -->
+<html data-theme="dark"></html>
+```
+
+Remove the `data-theme` attribute to follow the system preference again.

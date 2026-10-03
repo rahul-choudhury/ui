@@ -13,31 +13,30 @@
 @theme {
   /* -------------------------------------------------------------------
    * Colors
-   * Semantic names only - no color-literal names (no "gray-200", etc.)
    * ------------------------------------------------------------------- */
 
   /* Backgrounds */
-  --color-bg: #fafafa;
-  --color-surface: #ffffff;
-  --color-surface-soft: #f5f5f5;
+  --color-bg: light-dark(#fafafa, #0a0a0a);
+  --color-surface: light-dark(#ffffff, #171717);
+  --color-surface-soft: light-dark(#f5f5f5, #262626);
 
   /* Text */
-  --color-text: #171717;
-  --color-text-secondary: #525252;
-  --color-text-muted: #737373;
+  --color-text: light-dark(#171717, #fafafa);
+  --color-text-secondary: light-dark(#525252, #d4d4d4);
+  --color-text-muted: light-dark(#737373, #a3a3a3);
 
   /* Borders */
-  --color-border: #e5e5e5;
-  --color-border-strong: #d4d4d4;
+  --color-border: light-dark(#e5e5e5, #404040);
+  --color-border-strong: light-dark(#d4d4d4, #525252);
 
   /* Accent */
-  --color-accent: #171717;
-  --color-accent-foreground: #fafafa;
+  --color-accent: light-dark(#171717, #fafafa);
+  --color-accent-foreground: light-dark(#fafafa, #171717);
 
   /* Status */
-  --color-danger: #dc2626;
-  --color-warning: #d97706;
-  --color-success: #16a34a;
+  --color-danger: light-dark(#dc2626, #f87171);
+  --color-warning: light-dark(#d97706, #fbbf24);
+  --color-success: light-dark(#16a34a, #4ade80);
 
   /* -------------------------------------------------------------------
    * Border Radius
@@ -50,11 +49,16 @@
    * Shadows
    * Kept very subtle to match the flat, border-driven aesthetic.
    * ------------------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  --shadow-md: 0 2px 4px 0 rgb(0 0 0 / 0.06), 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  --shadow-lg: 0 4px 12px 0 rgb(0 0 0 / 0.08), 0 2px 4px 0 rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 2px 0 light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.24));
+  --shadow-md:
+    0 2px 4px 0 light-dark(rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.28)),
+    0 1px 2px 0 light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.2));
+  --shadow-lg:
+    0 4px 12px 0 light-dark(rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.32)),
+    0 2px 4px 0 light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.24));
   --shadow-overlay:
-    0 8px 24px 0 rgb(0 0 0 / 0.12), 0 2px 8px 0 rgb(0 0 0 / 0.06);
+    0 8px 24px 0 light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.4)),
+    0 2px 8px 0 light-dark(rgb(0 0 0 / 0.06), rgb(0 0 0 / 0.28));
 
   /* -------------------------------------------------------------------
    * Easing Curves
@@ -131,43 +135,16 @@
   --layout-prose: 65ch;
 }
 
-/*
- * Dark theme
- * Mirrors the light theme's neutral hierarchy and follows the operating
- * system preference without requiring application-level theme state.
- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+/* Follow the operating system only when no explicit theme is set. */
+:root:not([data-theme]) {
+  color-scheme: light dark;
+}
 
-    /* Backgrounds */
-    --color-bg: #0a0a0a;
-    --color-surface: #171717;
-    --color-surface-soft: #262626;
+/* Explicit themes select the corresponding light-dark() values. */
+[data-theme="light"] {
+  color-scheme: light;
+}
 
-    /* Text */
-    --color-text: #fafafa;
-    --color-text-secondary: #d4d4d4;
-    --color-text-muted: #a3a3a3;
-
-    /* Borders */
-    --color-border: #404040;
-    --color-border-strong: #525252;
-
-    /* Accent */
-    --color-accent: #fafafa;
-    --color-accent-foreground: #171717;
-
-    /* Status */
-    --color-danger: #f87171;
-    --color-warning: #fbbf24;
-    --color-success: #4ade80;
-
-    /* Shadows need more opacity against dark backgrounds. */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.24);
-    --shadow-md: 0 2px 4px 0 rgb(0 0 0 / 0.28), 0 1px 2px 0 rgb(0 0 0 / 0.2);
-    --shadow-lg: 0 4px 12px 0 rgb(0 0 0 / 0.32), 0 2px 4px 0 rgb(0 0 0 / 0.24);
-    --shadow-overlay:
-      0 8px 24px 0 rgb(0 0 0 / 0.4), 0 2px 8px 0 rgb(0 0 0 / 0.28);
-  }
+[data-theme="dark"] {
+  color-scheme: dark;
 }
