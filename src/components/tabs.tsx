@@ -27,7 +27,6 @@
  */
 
 import { Tabs as BaseTabs } from "@base-ui/react/tabs"
-import { motion } from "motion/react"
 import { cn } from "../lib/utils"
 
 /* ----- Root ----- */
@@ -43,23 +42,10 @@ function TabsList({ className, children, ...props }: TabsListProps) {
     <BaseTabs.List className={cn("relative flex", className)} {...props}>
       {children}
       <BaseTabs.Indicator
-        className="bottom-0 h-0.5 absolute bg-accent"
-        render={({
-          onDrag: _onDrag,
-          onDragEnd: _onDragEnd,
-          onDragStart: _onDragStart,
-          onAnimationStart: _onAnimationStart,
-          ...indicatorProps
-        }) => (
-          <motion.span
-            {...indicatorProps}
-            layout
-            style={{
-              ...indicatorProps.style,
-              left: "var(--active-tab-left)",
-              width: "var(--active-tab-width)",
-            }}
-          />
+        className={cn(
+          "bottom-0 left-0 h-0.5 absolute bg-accent",
+          "w-(--active-tab-width) translate-x-(--active-tab-left)",
+          "ease-out transition-[translate,width] duration-(--duration-normal) motion-reduce:transition-none"
         )}
       />
     </BaseTabs.List>

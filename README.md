@@ -11,8 +11,11 @@ bun add @rahul-choudhury/ui
 Install peer dependencies in the consuming app:
 
 ```sh
-bun add react react-dom
+bun add react react-dom @base-ui/react
+bun add -d tailwindcss
 ```
+
+`tailwindcss` v4 is required: `tokens.css` uses `@theme` and `@source`.
 
 ## Imports
 

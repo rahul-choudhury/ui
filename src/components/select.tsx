@@ -31,8 +31,7 @@
  */
 
 import { Select as BaseSelect } from "@base-ui/react/select"
-import { CheckIcon } from "@phosphor-icons/react"
-import { CaretUpDownIcon } from "@phosphor-icons/react/dist/ssr"
+import { CaretUpDownIcon, CheckIcon } from "@phosphor-icons/react"
 import { createContext, useContext } from "react"
 import { cn } from "../lib/utils"
 
