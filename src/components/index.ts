@@ -18,7 +18,6 @@ export {
   DropdownMenuTrigger,
 } from "./dropdown-menu"
 export { EmptyState } from "./empty-state"
-export { NotFound } from "./not-found"
 export {
   FieldControl,
   FieldDescription,
