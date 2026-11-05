@@ -37,6 +37,10 @@
   --color-danger: light-dark(#dc2626, #f87171);
   --color-warning: light-dark(#d97706, #fbbf24);
   --color-success: light-dark(#16a34a, #4ade80);
+  --color-danger-foreground: light-dark(#ffffff, #0a0a0a);
+
+  /* Overlays */
+  --color-backdrop: light-dark(rgb(0 0 0 / 0.4), rgb(0 0 0 / 0.6));
 
   /* -------------------------------------------------------------------
    * Border Radius
@@ -62,6 +66,7 @@
 
   /* -------------------------------------------------------------------
    * Easing Curves
+   * Mirrored in src/lib/easings.ts for JS animation. Keep both in sync.
    * ------------------------------------------------------------------- */
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);

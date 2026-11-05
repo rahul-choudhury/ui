@@ -5,30 +5,30 @@
  *
  * Thin design-system wrappers around Base UI Field primitives.
  *
- * @parts Field.Root, Field.Label, Field.Description, Field.Control, Field.Item, Field.Error, Field.Validity
+ * @parts FieldRoot, FieldLabel, FieldDescription, FieldControl, FieldItem, FieldError, FieldValidity
  *
  * @usage
- * - Use `Field.Root` to scope labels, descriptions, errors, and controls.
- * - Use `Field.Control` directly for custom controls, or pair `Field.Root`
+ * - Use `FieldRoot` to scope labels, descriptions, errors, and controls.
+ * - Use `FieldControl` directly for custom controls, or pair `FieldRoot`
  *   with field-aware primitives like `Input`, `Textarea`, `Select`, `Checkbox`,
  *   `Radio`, and `Switch`.
- * - Use `Field.Item` for nested field items, such as radio groups.
+ * - Use `FieldItem` for nested field items, such as radio groups.
  *
  * @example
  * ```tsx
- * <Field.Root invalid>
- *   <Field.Label required>Email</Field.Label>
+ * <FieldRoot invalid>
+ *   <FieldLabel required>Email</FieldLabel>
  *   <Input type="email" placeholder="you@example.com" />
- *   <Field.Error>Email is required.</Field.Error>
- * </Field.Root>
+ *   <FieldError>Email is required.</FieldError>
+ * </FieldRoot>
  * ```
  */
 
 import { Field as BaseField } from "@base-ui/react/field"
 import { cn } from "../lib/utils"
 
-const Control = BaseField.Control
-const Validity = BaseField.Validity
+const FieldControl = BaseField.Control
+const FieldValidity = BaseField.Validity
 
 type FieldRootProps = React.ComponentProps<typeof BaseField.Root>
 
@@ -104,23 +104,12 @@ function FieldError({ className, ...props }: FieldErrorProps) {
   )
 }
 
-const Field = {
-  Root: FieldRoot,
-  Label: FieldLabel,
-  Description: FieldDescription,
-  Control,
-  Item: FieldItem,
-  Error: FieldError,
-  Validity,
-}
-
 export {
-  Control as FieldControl,
-  Field,
+  FieldControl,
   FieldDescription,
   FieldError,
   FieldItem,
   FieldLabel,
   FieldRoot,
-  Validity as FieldValidity,
+  FieldValidity,
 }

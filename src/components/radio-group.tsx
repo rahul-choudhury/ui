@@ -13,17 +13,17 @@
  *
  * @example
  * ```tsx
- * <Field.Root>
- *   <Field.Label>Plan</Field.Label>
+ * <FieldRoot>
+ *   <FieldLabel>Plan</FieldLabel>
  *   <RadioGroup value={plan} onValueChange={setPlan}>
- *     <Field.Item>
- *       <Field.Label>
+ *     <FieldItem>
+ *       <FieldLabel>
  *         <RadioItem value="free" />
  *         Free
- *       </Field.Label>
- *     </Field.Item>
+ *       </FieldLabel>
+ *     </FieldItem>
  *   </RadioGroup>
- * </Field.Root>
+ * </FieldRoot>
  * ```
  */
 

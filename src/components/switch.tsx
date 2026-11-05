@@ -10,16 +10,16 @@
  * @accessibility
  * - Renders `<button role="switch">` with aria-checked.
  * - Keyboard: Space to toggle.
- * - Pair with `Field.Label` to provide an accessible name.
+ * - Pair with `FieldLabel` to provide an accessible name.
  *
  * @example
  * ```tsx
- * <Field.Root>
- *   <Field.Label>
+ * <FieldRoot>
+ *   <FieldLabel>
  *     <Switch checked={enabled} onCheckedChange={setEnabled} />
  *     Notifications
- *   </Field.Label>
- * </Field.Root>
+ *   </FieldLabel>
+ * </FieldRoot>
  * ```
  */
 

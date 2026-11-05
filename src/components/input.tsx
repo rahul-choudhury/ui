@@ -11,7 +11,7 @@
  *
  * @accessibility
  * - Renders Base UI `Input`, which uses a native `<input>` element.
- * - Automatically integrates with `Field.Root` for labeling, validity, and
+ * - Automatically integrates with `FieldRoot` for labeling, validity, and
  *   description/error relationships.
  *
  * @example
@@ -20,11 +20,11 @@
  * <Input type="search" placeholder="Search..." />
  *
  * // Inside Field
- * <Field.Root>
- *   <Field.Label>Name</Field.Label>
+ * <FieldRoot>
+ *   <FieldLabel>Name</FieldLabel>
  *   <Input required placeholder="Jane Doe" />
- *   <Field.Description>Used for your public profile.</Field.Description>
- * </Field.Root>
+ *   <FieldDescription>Used for your public profile.</FieldDescription>
+ * </FieldRoot>
  * ```
  */
 

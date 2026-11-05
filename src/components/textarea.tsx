@@ -3,21 +3,22 @@
 /**
  * Textarea
  *
- * Multi-line text input built on Base UI `Field.Control` with
+ * Multi-line text input built on Base UI `FieldControl` with
  * `render={<textarea />}`.
  *
  * @sizes sm | md | lg (controls padding and text size, not rows)
  * @states default, hover, focus-visible, disabled, invalid
  *
- * @usage Must be rendered within `Field.Root`.
+ * @accessibility Works standalone, and integrates with `FieldRoot` for
+ * labeling, validity, and description/error relationships (like `Input`).
  *
  * @example
  * ```tsx
- * <Field.Root>
- *   <Field.Label>Message</Field.Label>
+ * <FieldRoot>
+ *   <FieldLabel>Message</FieldLabel>
  *   <Textarea rows={4} placeholder="Write your message..." />
- *   <Field.Description>Markdown supported.</Field.Description>
- * </Field.Root>
+ *   <FieldDescription>Markdown supported.</FieldDescription>
+ * </FieldRoot>
  * ```
  */
 
@@ -48,6 +49,9 @@ export function Textarea({ size = "md", className, ...props }: TextareaProps) {
         sizeStyles[size],
         className
       )}
+      // Field.Control's props are typed for <input>; at runtime they're
+      // forwarded to the rendered <textarea>, so the public props stay
+      // correctly typed as textarea props.
       {...(props as React.ComponentProps<typeof BaseField.Control>)}
     />
   )

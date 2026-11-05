@@ -52,8 +52,8 @@ function DialogContent({ className, children, ...props }: DialogContentProps) {
     <BaseDialog.Portal>
       <BaseDialog.Backdrop
         className={cn(
-          "inset-0 bg-black/40 fixed z-(--z-overlay)",
-          "transition-opacity duration-300",
+          "inset-0 fixed z-(--z-overlay) bg-backdrop",
+          "transition-opacity duration-(--duration-slow)",
           "data-starting-style:opacity-0",
           "data-ending-style:opacity-0"
         )}
@@ -61,7 +61,7 @@ function DialogContent({ className, children, ...props }: DialogContentProps) {
       <BaseDialog.Popup
         className={cn(
           "max-w-md p-6 fixed top-1/2 left-1/2 z-(--z-modal) w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface shadow-overlay",
-          "transition-[opacity,scale] duration-300",
+          "transition-[opacity,scale] duration-(--duration-slow)",
           "data-starting-style:scale-95 data-starting-style:opacity-0",
           "data-ending-style:scale-95 data-ending-style:opacity-0",
           className

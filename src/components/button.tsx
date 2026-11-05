@@ -42,7 +42,8 @@ export function Button({
           "border border-border bg-surface text-text hover:border-border-strong hover:bg-surface-soft",
         variant === "ghost" &&
           "text-text-secondary hover:bg-surface-soft hover:text-text",
-        variant === "destructive" && "text-white bg-danger hover:bg-danger/90",
+        variant === "destructive" &&
+          "bg-danger text-danger-foreground hover:bg-danger/90",
         size === "sm" && "h-8 gap-1.5 px-3 text-sm rounded-md",
         size === "md" && "h-9 gap-2 px-4 text-sm rounded-md",
         size === "lg" && "h-10 gap-2 px-5 text-base rounded-md",

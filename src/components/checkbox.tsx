@@ -10,16 +10,16 @@
  *
  * @accessibility
  * - Keyboard: Space to toggle.
- * - Pair with `Field.Label` to provide an accessible name.
+ * - Pair with `FieldLabel` to provide an accessible name.
  *
  * @example
  * ```tsx
- * <Field.Root>
- *   <Field.Label>
+ * <FieldRoot>
+ *   <FieldLabel>
  *     <Checkbox checked={agreed} onCheckedChange={setAgreed} />
  *     I accept the terms
- *   </Field.Label>
- * </Field.Root>
+ *   </FieldLabel>
+ * </FieldRoot>
  *
  * <Checkbox indeterminate /> // Parent checkbox state
  * ```

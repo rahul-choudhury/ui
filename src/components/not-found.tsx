@@ -32,7 +32,7 @@ type NotFoundProps = {
 export function NotFound({
   code = "404",
   title = "Page not found",
-  description = "There is no there there. ~ Gertrude Stein",
+  description,
   action,
   className,
   ...props

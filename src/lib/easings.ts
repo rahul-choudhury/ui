@@ -1,3 +1,5 @@
+// Mirrored as --ease-* in src/styles/tokens.css. Keep both in sync.
+
 export type CubicBezier = readonly [number, number, number, number]
 
 export const easeInQuad = [

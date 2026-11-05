@@ -20,7 +20,6 @@ export {
 export { EmptyState } from "./empty-state"
 export { NotFound } from "./not-found"
 export {
-  Field,
   FieldControl,
   FieldDescription,
   FieldError,
