@@ -119,12 +119,14 @@
   /* -------------------------------------------------------------------
    * Z-Index Layers
    * Named layers for overlay stacking. Use these instead of raw numbers.
+   * Floating layers (dropdown, popover) sit above modal so menus, selects
+   * and popovers opened from inside a dialog render on top of it.
    * ------------------------------------------------------------------- */
-  --z-dropdown: 100;
-  --z-popover: 200;
-  --z-sticky: 300;
-  --z-overlay: 400;
-  --z-modal: 500;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-dropdown: 400;
+  --z-popover: 500;
   --z-toast: 600;
 
   /* -------------------------------------------------------------------

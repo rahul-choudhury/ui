@@ -15,8 +15,10 @@
  * @example
  * ```tsx
  * <Popover>
- *   <PopoverTrigger>
- *     <Button variant="ghost" size="icon"><Info /></Button>
+ *   <PopoverTrigger
+ *     render={<Button variant="ghost" size="icon" aria-label="Info" />}
+ *   >
+ *     <InfoIcon />
  *   </PopoverTrigger>
  *   <PopoverContent>
  *     <p className="text-sm">Additional information here.</p>
@@ -54,10 +56,15 @@ function PopoverContent({
 }: PopoverContentProps) {
   return (
     <BasePopover.Portal>
-      <BasePopover.Positioner side={side} align={align} sideOffset={sideOffset}>
+      <BasePopover.Positioner
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
+        className="z-(--z-popover)"
+      >
         <BasePopover.Popup
           className={cn(
-            "p-4 z-(--z-popover) rounded-md border border-border bg-surface shadow-md",
+            "p-4 rounded-md border border-border bg-surface shadow-md",
             "transition-[opacity,scale] duration-200",
             "data-starting-style:scale-95 data-starting-style:opacity-0",
             "data-ending-style:scale-95 data-ending-style:opacity-0",

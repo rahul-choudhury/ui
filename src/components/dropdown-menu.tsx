@@ -16,14 +16,16 @@
  * @example
  * ```tsx
  * <DropdownMenu>
- *   <DropdownMenuTrigger>
- *     <Button variant="ghost" size="icon"><DotsThree /></Button>
+ *   <DropdownMenuTrigger
+ *     render={<Button variant="ghost" size="icon" aria-label="Actions" />}
+ *   >
+ *     <DotsThreeIcon />
  *   </DropdownMenuTrigger>
  *   <DropdownMenuContent>
- *     <DropdownMenuItem onSelect={() => edit()}>Edit</DropdownMenuItem>
- *     <DropdownMenuItem onSelect={() => duplicate()}>Duplicate</DropdownMenuItem>
+ *     <DropdownMenuItem onClick={() => edit()}>Edit</DropdownMenuItem>
+ *     <DropdownMenuItem onClick={() => duplicate()}>Duplicate</DropdownMenuItem>
  *     <DropdownMenuSeparator />
- *     <DropdownMenuItem onSelect={() => remove()}>Delete</DropdownMenuItem>
+ *     <DropdownMenuItem onClick={() => remove()}>Delete</DropdownMenuItem>
  *   </DropdownMenuContent>
  * </DropdownMenu>
  * ```
@@ -58,10 +60,15 @@ function DropdownMenuContent({
 }: DropdownMenuContentProps) {
   return (
     <BaseMenu.Portal>
-      <BaseMenu.Positioner side={side} align={align} sideOffset={sideOffset}>
+      <BaseMenu.Positioner
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
+        className="z-(--z-dropdown)"
+      >
         <BaseMenu.Popup
           className={cn(
-            "min-w-40 py-1 z-(--z-dropdown) rounded-md border border-border bg-surface shadow-md",
+            "min-w-40 py-1 rounded-md border border-border bg-surface shadow-md",
             "transition-[opacity,scale] duration-200",
             "data-starting-style:scale-95 data-starting-style:opacity-0",
             "data-ending-style:scale-95 data-ending-style:opacity-0",
@@ -78,15 +85,9 @@ function DropdownMenuContent({
 
 /* ----- Item ----- */
 
-type DropdownMenuItemProps = {
-  onSelect?: () => void
-} & React.ComponentProps<typeof BaseMenu.Item>
+type DropdownMenuItemProps = React.ComponentProps<typeof BaseMenu.Item>
 
-function DropdownMenuItem({
-  className,
-  onSelect,
-  ...props
-}: DropdownMenuItemProps) {
+function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps) {
   return (
     <BaseMenu.Item
       className={cn(
@@ -94,7 +95,6 @@ function DropdownMenuItem({
         "data-highlighted:bg-surface-soft",
         className
       )}
-      onClick={onSelect}
       {...props}
     />
   )

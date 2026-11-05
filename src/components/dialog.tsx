@@ -17,14 +17,14 @@
  * @example
  * ```tsx
  * <Dialog>
- *   <DialogTrigger>
- *     <Button>Delete</Button>
+ *   <DialogTrigger render={<Button variant="destructive" />}>
+ *     Delete
  *   </DialogTrigger>
  *   <DialogContent>
  *     <DialogTitle>Confirm deletion</DialogTitle>
  *     <DialogDescription>This action cannot be undone.</DialogDescription>
  *     <div className="mt-4 flex justify-end gap-2">
- *       <DialogClose><Button variant="ghost">Cancel</Button></DialogClose>
+ *       <DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
  *       <Button variant="destructive">Delete</Button>
  *     </div>
  *   </DialogContent>

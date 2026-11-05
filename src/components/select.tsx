@@ -6,7 +6,8 @@
  * True listbox/select component backed by Base UI Select.
  * Not a combobox - searchable selection is out of scope for v1.
  *
- * @sizes sm (h-8) | md (h-9) | lg (h-10) - set on SelectTrigger
+ * @sizes sm (h-8) | md (h-9) | lg (h-10) - set on Select; applies to the
+ *        trigger and the items
  * @states default, hover, focus-visible, disabled, invalid (on trigger)
  *
  * @accessibility
@@ -16,7 +17,7 @@
  *
  * @example
  * ```tsx
- * <Select defaultValue="serif">
+ * <Select defaultValue="serif" size="md">
  *   <SelectTrigger>
  *     <SelectValue placeholder="Choose a font..." />
  *   </SelectTrigger>
@@ -35,15 +36,9 @@ import { CaretUpDownIcon } from "@phosphor-icons/react/dist/ssr"
 import { createContext, useContext } from "react"
 import { cn } from "../lib/utils"
 
-/* ----- Root (no HTML rendered) ----- */
-
-const Select = BaseSelect.Root
-
 type SelectSize = "sm" | "md" | "lg"
 
 const SelectSizeContext = createContext<SelectSize>("md")
-
-/* ----- Trigger ----- */
 
 const sizeStyles: Record<SelectSize, string> = {
   sm: "h-8 px-2.5 text-sm",
@@ -51,37 +46,54 @@ const sizeStyles: Record<SelectSize, string> = {
   lg: "h-10 px-3.5 text-base",
 }
 
-type SelectTriggerProps = {
-  size?: SelectSize
-} & React.ComponentProps<typeof BaseSelect.Trigger>
+/* ----- Root (no HTML rendered) ----- */
 
-function SelectTrigger({
+// The size lives on the root so it reaches both the trigger and the items,
+// which render in a portal outside the trigger's subtree.
+type SelectProps<
+  Value,
+  Multiple extends boolean | undefined = false,
+> = BaseSelect.Root.Props<Value, Multiple> & {
+  size?: SelectSize
+}
+
+function Select<Value, Multiple extends boolean | undefined = false>({
   size = "md",
-  className,
-  children,
   ...props
-}: SelectTriggerProps) {
+}: SelectProps<Value, Multiple>) {
   return (
     <SelectSizeContext value={size}>
-      <BaseSelect.Trigger
-        className={cn(
-          "inline-flex w-full items-center justify-between rounded-md border border-border bg-surface text-text transition-[color,box-shadow]",
-          "hover:border-border-strong",
-          "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          "aria-invalid:border-danger aria-invalid:focus-visible:border-danger aria-invalid:focus-visible:ring-danger/15",
-          "data-popup-open:border-accent",
-          sizeStyles[size],
-          className
-        )}
-        {...props}
-      >
-        {children}
-        <BaseSelect.Icon className="ml-2 shrink-0">
-          <CaretUpDownIcon size={14} className="text-text-muted" />
-        </BaseSelect.Icon>
-      </BaseSelect.Trigger>
+      <BaseSelect.Root {...props} />
     </SelectSizeContext>
+  )
+}
+
+/* ----- Trigger ----- */
+
+type SelectTriggerProps = React.ComponentProps<typeof BaseSelect.Trigger>
+
+function SelectTrigger({ className, children, ...props }: SelectTriggerProps) {
+  const size = useContext(SelectSizeContext)
+
+  return (
+    <BaseSelect.Trigger
+      className={cn(
+        "inline-flex w-full items-center justify-between rounded-md border border-border bg-surface text-text transition-[color,box-shadow]",
+        "hover:border-border-strong",
+        "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",
+        "disabled:cursor-not-allowed disabled:opacity-50",
+        "aria-invalid:border-danger aria-invalid:focus-visible:border-danger aria-invalid:focus-visible:ring-danger/15",
+        "data-popup-open:border-accent",
+        sizeStyles[size],
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <BaseSelect.Icon className="ml-2 shrink-0">
+        <CaretUpDownIcon size={14} className="text-text-muted" />
+      </BaseSelect.Icon>
+    </BaseSelect.Trigger>
   )
 }
 
@@ -94,15 +106,32 @@ const SelectValue = BaseSelect.Value
 type SelectContentProps = {
   side?: "top" | "bottom"
   sideOffset?: number
+  /**
+   * When true (Base UI default), the popup overlaps the trigger so the
+   * selected item sits on top of it, and `side`/`sideOffset` are ignored.
+   */
+  alignItemWithTrigger?: boolean
 } & React.ComponentProps<typeof BaseSelect.Popup>
 
-function SelectContent({ className, children, ...props }: SelectContentProps) {
+function SelectContent({
+  side = "bottom",
+  sideOffset = 4,
+  alignItemWithTrigger,
+  className,
+  children,
+  ...props
+}: SelectContentProps) {
   return (
     <BaseSelect.Portal>
-      <BaseSelect.Positioner>
+      <BaseSelect.Positioner
+        side={side}
+        sideOffset={sideOffset}
+        alignItemWithTrigger={alignItemWithTrigger}
+        className="z-(--z-dropdown)"
+      >
         <BaseSelect.Popup
           className={cn(
-            "max-h-60 z-(--z-dropdown) min-w-(--anchor-width) overflow-auto rounded-md border border-border bg-surface shadow-md",
+            "max-h-60 min-w-(--anchor-width) overflow-auto rounded-md border border-border bg-surface shadow-md",
             className
           )}
           {...props}
