@@ -35,7 +35,7 @@ type FieldRootProps = React.ComponentProps<typeof BaseField.Root>
 function FieldRoot({ className, ...props }: FieldRootProps) {
   return (
     <BaseField.Root
-      className={cn("gap-1.5 flex flex-col", className)}
+      className={cn("flex flex-col gap-1.5", className)}
       {...props}
     />
   )
@@ -86,7 +86,7 @@ type FieldItemProps = React.ComponentProps<typeof BaseField.Item>
 function FieldItem({ className, ...props }: FieldItemProps) {
   return (
     <BaseField.Item
-      className={cn("gap-1.5 flex flex-col", className)}
+      className={cn("flex flex-col gap-1.5", className)}
       {...props}
     />
   )

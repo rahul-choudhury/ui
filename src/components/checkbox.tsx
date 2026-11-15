@@ -35,7 +35,7 @@ export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <BaseCheckbox.Root
       className={cn(
-        "size-4 inline-flex shrink-0 items-center justify-center rounded-sm border border-border bg-surface transition-colors",
+        "inline-flex size-4 shrink-0 items-center justify-center rounded-sm border border-border bg-surface transition-colors",
         "hover:border-border-strong",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
         "data-checked:border-accent data-checked:bg-accent",

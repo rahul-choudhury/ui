@@ -39,7 +39,7 @@ const sizeStyles = {
 
 type InputProps = {
   size?: "sm" | "md" | "lg"
-} & Omit<React.ComponentProps<"input">, "size">
+} & Omit<React.ComponentProps<typeof BaseInput>, "size">
 
 export function Input({ size = "md", className, ...props }: InputProps) {
   return (

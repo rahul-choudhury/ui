@@ -24,7 +24,7 @@ import { cn } from "../lib/utils"
 type ButtonProps = {
   variant?: "primary" | "secondary" | "ghost" | "destructive"
   size?: "sm" | "md" | "lg" | "icon"
-} & React.ComponentProps<"button">
+} & React.ComponentProps<typeof BaseButton>
 
 export function Button({
   variant = "primary",
@@ -35,7 +35,7 @@ export function Button({
   return (
     <BaseButton
       className={cn(
-        "font-medium ease-out inline-flex cursor-pointer items-center justify-center transition-[color,background-color,border-color,transform] duration-(--duration-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-px disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none",
+        "inline-flex cursor-pointer items-center justify-center font-medium transition-[color,background-color,border-color,transform] duration-(--duration-fast) ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-px data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none",
         variant === "primary" &&
           "bg-accent text-accent-foreground hover:bg-accent/90",
         variant === "secondary" &&
@@ -44,9 +44,9 @@ export function Button({
           "text-text-secondary hover:bg-surface-soft hover:text-text",
         variant === "destructive" &&
           "bg-danger text-danger-foreground hover:bg-danger/90",
-        size === "sm" && "h-8 gap-1.5 px-3 text-sm rounded-md",
-        size === "md" && "h-9 gap-2 px-4 text-sm rounded-md",
-        size === "lg" && "h-10 gap-2 px-5 text-base rounded-md",
+        size === "sm" && "h-8 gap-1.5 rounded-md px-3 text-sm",
+        size === "md" && "h-9 gap-2 rounded-md px-4 text-sm",
+        size === "lg" && "h-10 gap-2 rounded-md px-5 text-base",
         size === "icon" && "size-9 rounded-md",
         className
       )}

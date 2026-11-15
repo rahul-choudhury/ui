@@ -64,8 +64,8 @@ function PopoverContent({
       >
         <BasePopover.Popup
           className={cn(
-            "p-4 rounded-md border border-border bg-surface shadow-md",
-            "transition-[opacity,scale] duration-(--duration-normal)",
+            "rounded-md border border-border bg-surface p-4 shadow-md",
+            "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
             "data-starting-style:scale-95 data-starting-style:opacity-0",
             "data-ending-style:scale-95 data-ending-style:opacity-0",
             className

@@ -52,16 +52,16 @@ function DialogContent({ className, children, ...props }: DialogContentProps) {
     <BaseDialog.Portal>
       <BaseDialog.Backdrop
         className={cn(
-          "inset-0 fixed z-(--z-overlay) bg-backdrop",
-          "transition-opacity duration-(--duration-slow)",
+          "fixed inset-0 z-(--z-overlay) bg-backdrop",
+          "transition-opacity duration-(--duration-slow) motion-reduce:transition-none",
           "data-starting-style:opacity-0",
           "data-ending-style:opacity-0"
         )}
       />
       <BaseDialog.Popup
         className={cn(
-          "max-w-md p-6 fixed top-1/2 left-1/2 z-(--z-modal) w-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface shadow-overlay",
-          "transition-[opacity,scale] duration-(--duration-slow)",
+          "fixed top-1/2 left-1/2 z-(--z-modal) w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface p-6 shadow-overlay",
+          "transition-[opacity,scale] duration-(--duration-slow) motion-reduce:transition-none",
           "data-starting-style:scale-95 data-starting-style:opacity-0",
           "data-ending-style:scale-95 data-ending-style:opacity-0",
           className

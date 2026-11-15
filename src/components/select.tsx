@@ -104,6 +104,11 @@ const SelectValue = BaseSelect.Value
 
 type SelectContentProps = {
   side?: "top" | "bottom"
+  /**
+   * How the popup lines up with the trigger along `side`. Only matters when
+   * the popup is wider than the trigger. Defaults to Base UI's "center".
+   */
+  align?: "start" | "center" | "end"
   sideOffset?: number
   /**
    * When true (Base UI default), the popup overlaps the trigger so the
@@ -114,6 +119,7 @@ type SelectContentProps = {
 
 function SelectContent({
   side = "bottom",
+  align,
   sideOffset = 4,
   alignItemWithTrigger,
   className,
@@ -124,6 +130,7 @@ function SelectContent({
     <BaseSelect.Portal>
       <BaseSelect.Positioner
         side={side}
+        align={align}
         sideOffset={sideOffset}
         alignItemWithTrigger={alignItemWithTrigger}
         className="z-(--z-dropdown)"
@@ -131,6 +138,12 @@ function SelectContent({
         <BaseSelect.Popup
           className={cn(
             "max-h-60 min-w-(--anchor-width) overflow-auto rounded-md border border-border bg-surface shadow-md",
+            "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
+            "data-starting-style:scale-95 data-starting-style:opacity-0",
+            "data-ending-style:scale-95 data-ending-style:opacity-0",
+            // With alignItemWithTrigger the popup sits on top of the trigger
+            // (data-side="none"); scaling it there looks wrong, so it only fades.
+            "data-[side=none]:data-ending-style:scale-100 data-[side=none]:data-starting-style:scale-100",
             className
           )}
           {...props}
@@ -154,6 +167,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
       className={cn(
         "flex cursor-pointer items-center justify-between text-text transition-colors outline-none",
         "data-highlighted:bg-surface-soft",
+        "data-disabled:pointer-events-none data-disabled:opacity-50",
         sizeStyles[size],
         className
       )}

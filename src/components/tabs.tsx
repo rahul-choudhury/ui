@@ -43,9 +43,9 @@ function TabsList({ className, children, ...props }: TabsListProps) {
       {children}
       <BaseTabs.Indicator
         className={cn(
-          "bottom-0 left-0 h-0.5 absolute bg-accent",
+          "absolute bottom-0 left-0 h-0.5 bg-accent",
           "w-(--active-tab-width) translate-x-(--active-tab-left)",
-          "ease-out transition-[translate,width] duration-(--duration-normal) motion-reduce:transition-none"
+          "transition-[translate,width] duration-(--duration-normal) ease-out motion-reduce:transition-none"
         )}
       />
     </BaseTabs.List>
@@ -63,6 +63,7 @@ function Tab({ className, ...props }: TabProps) {
         "px-3 py-2 text-sm font-medium text-text-muted transition-colors",
         "hover:text-text",
         "aria-selected:text-text",
+        "data-disabled:pointer-events-none data-disabled:opacity-50",
         "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
         className
       )}
