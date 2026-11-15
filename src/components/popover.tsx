@@ -28,7 +28,7 @@
  */
 
 import { Popover as BasePopover } from "@base-ui/react/popover"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 /* ----- Root ----- */
 
@@ -63,11 +63,13 @@ function PopoverContent({
         className="z-(--z-popover)"
       >
         <BasePopover.Popup
-          className={cn(
-            "rounded-md border border-border bg-surface p-4 shadow-md",
-            "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0",
+          className={mergeClassName(
+            cn(
+              "rounded-md border border-border bg-surface p-4 shadow-md",
+              "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
+              "data-starting-style:scale-95 data-starting-style:opacity-0",
+              "data-ending-style:scale-95 data-ending-style:opacity-0"
+            ),
             className
           )}
           {...props}

@@ -32,7 +32,7 @@
  */
 
 import { Menu as BaseMenu } from "@base-ui/react/menu"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 /* ----- Root ----- */
 
@@ -67,11 +67,13 @@ function DropdownMenuContent({
         className="z-(--z-dropdown)"
       >
         <BaseMenu.Popup
-          className={cn(
-            "min-w-40 rounded-md border border-border bg-surface py-1 shadow-md",
-            "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0",
+          className={mergeClassName(
+            cn(
+              "min-w-40 rounded-md border border-border bg-surface py-1 shadow-md",
+              "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
+              "data-starting-style:scale-95 data-starting-style:opacity-0",
+              "data-ending-style:scale-95 data-ending-style:opacity-0"
+            ),
             className
           )}
           {...props}
@@ -90,10 +92,12 @@ type DropdownMenuItemProps = React.ComponentProps<typeof BaseMenu.Item>
 function DropdownMenuItem({ className, ...props }: DropdownMenuItemProps) {
   return (
     <BaseMenu.Item
-      className={cn(
-        "flex w-full cursor-pointer items-center px-3 py-1.5 text-sm text-text transition-colors outline-none",
-        "data-highlighted:bg-surface-soft",
-        "data-disabled:pointer-events-none data-disabled:opacity-50",
+      className={mergeClassName(
+        cn(
+          "flex w-full cursor-pointer items-center px-3 py-1.5 text-sm text-text transition-colors outline-none",
+          "data-highlighted:bg-surface-soft",
+          "data-disabled:pointer-events-none data-disabled:opacity-50"
+        ),
         className
       )}
       {...props}

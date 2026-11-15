@@ -27,7 +27,7 @@
  */
 
 import { Tabs as BaseTabs } from "@base-ui/react/tabs"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 /* ----- Root ----- */
 
@@ -39,7 +39,10 @@ type TabsListProps = React.ComponentProps<typeof BaseTabs.List>
 
 function TabsList({ className, children, ...props }: TabsListProps) {
   return (
-    <BaseTabs.List className={cn("relative flex", className)} {...props}>
+    <BaseTabs.List
+      className={mergeClassName("relative flex", className)}
+      {...props}
+    >
       {children}
       <BaseTabs.Indicator
         className={cn(
@@ -59,12 +62,14 @@ type TabProps = React.ComponentProps<typeof BaseTabs.Tab>
 function Tab({ className, ...props }: TabProps) {
   return (
     <BaseTabs.Tab
-      className={cn(
-        "px-3 py-2 text-sm font-medium text-text-muted transition-colors",
-        "hover:text-text",
-        "aria-selected:text-text",
-        "data-disabled:pointer-events-none data-disabled:opacity-50",
-        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent",
+      className={mergeClassName(
+        cn(
+          "px-3 py-2 text-sm font-medium text-text-muted transition-colors",
+          "hover:text-text",
+          "aria-selected:text-text",
+          "data-disabled:pointer-events-none data-disabled:opacity-50",
+          "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent"
+        ),
         className
       )}
       {...props}
@@ -77,7 +82,9 @@ function Tab({ className, ...props }: TabProps) {
 type TabPanelProps = React.ComponentProps<typeof BaseTabs.Panel>
 
 function TabPanel({ className, ...props }: TabPanelProps) {
-  return <BaseTabs.Panel className={cn("pt-4", className)} {...props} />
+  return (
+    <BaseTabs.Panel className={mergeClassName("pt-4", className)} {...props} />
+  )
 }
 
 export { Tab, TabPanel, Tabs, TabsList }

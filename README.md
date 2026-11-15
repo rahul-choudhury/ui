@@ -22,7 +22,10 @@ bun add -d tailwindcss
 ```ts
 import { cn, easeOutQuint } from "@rahul-choudhury/ui"
 import { Button, Input } from "@rahul-choudhury/ui/components"
-import { usePrefersReducedMotion } from "@rahul-choudhury/ui/hooks"
+import {
+  useMediaQuery,
+  usePrefersReducedMotion,
+} from "@rahul-choudhury/ui/hooks"
 ```
 
 ## Tailwind Tokens

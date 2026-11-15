@@ -39,6 +39,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "check:tokens": "bun scripts/check-tokens.ts",
     "prepack": "bun run build"
   },
   "peerDependencies": {

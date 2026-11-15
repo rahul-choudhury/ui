@@ -66,7 +66,8 @@
 
   /* -------------------------------------------------------------------
    * Easing Curves
-   * Mirrored in src/lib/easings.ts for JS animation. Keep both in sync.
+   * Mirrored in src/lib/easings.ts for JS animation; `bun run check:tokens`
+   * fails if the two drift.
    * ------------------------------------------------------------------- */
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);

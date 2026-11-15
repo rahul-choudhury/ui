@@ -33,7 +33,7 @@
  */
 
 import { Dialog as BaseDialog } from "@base-ui/react/dialog"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 /* ----- Root ----- */
 
@@ -59,11 +59,13 @@ function DialogContent({ className, children, ...props }: DialogContentProps) {
         )}
       />
       <BaseDialog.Popup
-        className={cn(
-          "fixed top-1/2 left-1/2 z-(--z-modal) w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface p-6 shadow-overlay",
-          "transition-[opacity,scale] duration-(--duration-slow) motion-reduce:transition-none",
-          "data-starting-style:scale-95 data-starting-style:opacity-0",
-          "data-ending-style:scale-95 data-ending-style:opacity-0",
+        className={mergeClassName(
+          cn(
+            "fixed top-1/2 left-1/2 z-(--z-modal) w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface p-6 shadow-overlay",
+            "transition-[opacity,scale] duration-(--duration-slow) motion-reduce:transition-none",
+            "data-starting-style:scale-95 data-starting-style:opacity-0",
+            "data-ending-style:scale-95 data-ending-style:opacity-0"
+          ),
           className
         )}
         {...props}
@@ -81,7 +83,7 @@ type DialogTitleProps = React.ComponentProps<typeof BaseDialog.Title>
 function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
     <BaseDialog.Title
-      className={cn("text-lg font-medium text-text", className)}
+      className={mergeClassName("text-lg font-medium text-text", className)}
       {...props}
     />
   )
@@ -96,7 +98,7 @@ type DialogDescriptionProps = React.ComponentProps<
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
   return (
     <BaseDialog.Description
-      className={cn("mt-1 text-sm text-text-secondary", className)}
+      className={mergeClassName("mt-1 text-sm text-text-secondary", className)}
       {...props}
     />
   )

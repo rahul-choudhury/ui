@@ -25,7 +25,7 @@
  */
 
 import { Field as BaseField } from "@base-ui/react/field"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 const FieldControl = BaseField.Control
 const FieldValidity = BaseField.Validity
@@ -35,7 +35,7 @@ type FieldRootProps = React.ComponentProps<typeof BaseField.Root>
 function FieldRoot({ className, ...props }: FieldRootProps) {
   return (
     <BaseField.Root
-      className={cn("flex flex-col gap-1.5", className)}
+      className={mergeClassName("flex flex-col gap-1.5", className)}
       {...props}
     />
   )
@@ -54,8 +54,10 @@ function FieldLabel({
 }: FieldLabelProps) {
   return (
     <BaseField.Label
-      className={cn(
-        "text-sm font-medium text-text data-disabled:cursor-not-allowed data-disabled:opacity-50",
+      className={mergeClassName(
+        cn(
+          "text-sm font-medium text-text data-disabled:cursor-not-allowed data-disabled:opacity-50"
+        ),
         className
       )}
       {...props}
@@ -75,7 +77,7 @@ type FieldDescriptionProps = React.ComponentProps<typeof BaseField.Description>
 function FieldDescription({ className, ...props }: FieldDescriptionProps) {
   return (
     <BaseField.Description
-      className={cn("text-sm text-text-muted", className)}
+      className={mergeClassName("text-sm text-text-muted", className)}
       {...props}
     />
   )
@@ -86,7 +88,7 @@ type FieldItemProps = React.ComponentProps<typeof BaseField.Item>
 function FieldItem({ className, ...props }: FieldItemProps) {
   return (
     <BaseField.Item
-      className={cn("flex flex-col gap-1.5", className)}
+      className={mergeClassName("flex flex-col gap-1.5", className)}
       {...props}
     />
   )
@@ -98,7 +100,7 @@ function FieldError({ className, ...props }: FieldErrorProps) {
   return (
     <BaseField.Error
       role="alert"
-      className={cn("text-sm text-danger", className)}
+      className={mergeClassName("text-sm text-danger", className)}
       {...props}
     />
   )

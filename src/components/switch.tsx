@@ -24,19 +24,21 @@
  */
 
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 type SwitchProps = React.ComponentProps<typeof BaseSwitch.Root>
 
 export function Switch({ className, ...props }: SwitchProps) {
   return (
     <BaseSwitch.Root
-      className={cn(
-        "relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full transition-colors",
-        "bg-border",
-        "data-checked:bg-accent",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-        "data-disabled:cursor-not-allowed data-disabled:opacity-50",
+      className={mergeClassName(
+        cn(
+          "relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full transition-colors",
+          "bg-border",
+          "data-checked:bg-accent",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+          "data-disabled:cursor-not-allowed data-disabled:opacity-50"
+        ),
         className
       )}
       {...props}

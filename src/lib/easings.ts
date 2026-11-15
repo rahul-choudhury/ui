@@ -1,4 +1,5 @@
-// Mirrored as --ease-* in src/styles/tokens.css. Keep both in sync.
+// Mirrored as --ease-* in src/styles/tokens.css; `bun run check:tokens` fails
+// if the two drift. The names also feed the tailwind-merge config in utils.ts.
 
 export type CubicBezier = readonly [number, number, number, number]
 

@@ -4,8 +4,8 @@
  * Surface container for grouping related content.
  *
  * @variants
- * - `default`: plain surface, no border or shadow
- * - `bordered`: 1px border for visual separation in dense layouts
+ * - `bordered` (default): 1px border for visual separation
+ * - `plain`: surface only, no border or shadow
  * - `elevated`: subtle shadow for floating/prominent content
  *
  * @accessibility Renders a `<div>`. Add role="region" and aria-label
@@ -13,7 +13,7 @@
  *
  * @example
  * ```tsx
- * <Card variant="bordered" className="p-6">
+ * <Card className="p-6">
  *   <h3>Title</h3>
  *   <p>Content</p>
  * </Card>
@@ -23,10 +23,10 @@
 import { cn } from "../lib/utils"
 
 type CardProps = {
-  variant?: "default" | "bordered" | "elevated"
+  variant?: "bordered" | "plain" | "elevated"
 } & React.ComponentProps<"div">
 
-export function Card({ variant = "default", className, ...props }: CardProps) {
+export function Card({ variant = "bordered", className, ...props }: CardProps) {
   return (
     <div
       className={cn(

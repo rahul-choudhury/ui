@@ -8,6 +8,10 @@
  *
  * @sizes sm (h-8) | md (h-9) | lg (h-10) - set on Select; applies to the
  *        trigger and the items
+ * @variants (on SelectTrigger)
+ * - `default`: bordered field, matches `Input`
+ * - `ghost`: no border or background until hovered or open, matches the
+ *   ghost `Button`; for quiet inline pickers
  * @states default, hover, focus-visible, disabled, invalid (on trigger)
  *
  * @accessibility
@@ -33,7 +37,7 @@
 import { Select as BaseSelect } from "@base-ui/react/select"
 import { CaretUpDownIcon, CheckIcon } from "@phosphor-icons/react"
 import { createContext, useContext } from "react"
-import { cn } from "../lib/utils"
+import { cn, mergeClassName } from "../lib/utils"
 
 type SelectSize = "sm" | "md" | "lg"
 
@@ -69,21 +73,38 @@ function Select<Value, Multiple extends boolean | undefined = false>({
 
 /* ----- Trigger ----- */
 
-type SelectTriggerProps = React.ComponentProps<typeof BaseSelect.Trigger>
+const triggerVariantStyles = {
+  default:
+    "border-border bg-surface text-text hover:border-border-strong data-popup-open:border-accent",
+  // The border stays (transparent) so both variants are the same size and
+  // the focus and invalid border colours still show.
+  ghost:
+    "border-transparent bg-transparent text-text-secondary hover:bg-surface-soft hover:text-text data-popup-open:bg-surface-soft data-popup-open:text-text",
+}
 
-function SelectTrigger({ className, children, ...props }: SelectTriggerProps) {
+type SelectTriggerProps = {
+  variant?: "default" | "ghost"
+} & React.ComponentProps<typeof BaseSelect.Trigger>
+
+function SelectTrigger({
+  variant = "default",
+  className,
+  children,
+  ...props
+}: SelectTriggerProps) {
   const size = useContext(SelectSizeContext)
 
   return (
     <BaseSelect.Trigger
-      className={cn(
-        "inline-flex w-full items-center justify-between rounded-md border border-border bg-surface text-text transition-[color,box-shadow]",
-        "hover:border-border-strong",
-        "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",
-        "disabled:cursor-not-allowed disabled:opacity-50",
-        "aria-invalid:border-danger aria-invalid:focus-visible:border-danger aria-invalid:focus-visible:ring-danger/15",
-        "data-popup-open:border-accent",
-        sizeStyles[size],
+      className={mergeClassName(
+        cn(
+          "inline-flex w-full items-center justify-between rounded-md border transition-[color,background-color,border-color,box-shadow]",
+          triggerVariantStyles[variant],
+          "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15 focus-visible:outline-none",
+          "disabled:cursor-not-allowed disabled:opacity-50",
+          "aria-invalid:border-danger aria-invalid:focus-visible:border-danger aria-invalid:focus-visible:ring-danger/15",
+          sizeStyles[size]
+        ),
         className
       )}
       {...props}
@@ -136,14 +157,16 @@ function SelectContent({
         className="z-(--z-dropdown)"
       >
         <BaseSelect.Popup
-          className={cn(
-            "max-h-60 min-w-(--anchor-width) overflow-auto rounded-md border border-border bg-surface shadow-md",
-            "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0",
-            // With alignItemWithTrigger the popup sits on top of the trigger
-            // (data-side="none"); scaling it there looks wrong, so it only fades.
-            "data-[side=none]:data-ending-style:scale-100 data-[side=none]:data-starting-style:scale-100",
+          className={mergeClassName(
+            cn(
+              "max-h-60 min-w-(--anchor-width) overflow-auto rounded-md border border-border bg-surface shadow-md",
+              "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
+              "data-starting-style:scale-95 data-starting-style:opacity-0",
+              "data-ending-style:scale-95 data-ending-style:opacity-0",
+              // With alignItemWithTrigger the popup sits on top of the trigger
+              // (data-side="none"); scaling it there looks wrong, so it only fades.
+              "data-[side=none]:data-ending-style:scale-100 data-[side=none]:data-starting-style:scale-100"
+            ),
             className
           )}
           {...props}
@@ -164,11 +187,13 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
 
   return (
     <BaseSelect.Item
-      className={cn(
-        "flex cursor-pointer items-center justify-between text-text transition-colors outline-none",
-        "data-highlighted:bg-surface-soft",
-        "data-disabled:pointer-events-none data-disabled:opacity-50",
-        sizeStyles[size],
+      className={mergeClassName(
+        cn(
+          "flex cursor-pointer items-center justify-between text-text transition-colors outline-none",
+          "data-highlighted:bg-surface-soft",
+          "data-disabled:pointer-events-none data-disabled:opacity-50",
+          sizeStyles[size]
+        ),
         className
       )}
       {...props}
