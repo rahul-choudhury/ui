@@ -3,10 +3,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    border: 0;
     border-radius: var(--radius-md);
-    background: transparent;
     font-weight: var(--font-weight-medium);
     cursor: pointer;
     transition-property: color, background-color, border-color, translate;

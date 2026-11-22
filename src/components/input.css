@@ -2,14 +2,11 @@
   .ui-input,
   .ui-textarea {
     width: 100%;
-    padding: 0;
-    border: 0;
     border-radius: var(--radius-md);
     color: var(--color-text);
 
     &::placeholder {
       color: var(--color-text-muted);
-      opacity: 1;
     }
 
     &:focus-visible {
@@ -43,10 +40,6 @@
           box-shadow: var(--ring-invalid);
         }
       }
-    }
-
-    &[data-variant="bare"] {
-      background: transparent;
     }
   }
 

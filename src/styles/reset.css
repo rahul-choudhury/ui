@@ -84,6 +84,51 @@
   }
 
   /*
+   * Added: browser defaults that Tailwind's Preflight used to undo and Josh's
+   * reset keeps. Components and apps style these elements explicitly.
+   */
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  ol,
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  ::placeholder {
+    opacity: 1;
+  }
+
+  /*
    * Added: turn off transitions and animations for people who ask for
    * reduced motion, everywhere at once. Near-zero durations instead of
    * `none` so transitions still run and finish instantly (Base UI waits for
