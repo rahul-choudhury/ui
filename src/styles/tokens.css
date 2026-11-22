@@ -181,6 +181,22 @@
    * Container width constraint.
    * ------------------------------------------------------------------- */
   --layout-container: 56rem;
+
+  /* -------------------------------------------------------------------
+   * Breakpoints (documentation only)
+   * CSS variables can't be used inside @media or @container queries, so
+   * these are written as literal values wherever they're needed:
+   *
+   *   sm   40rem (640px)    @media (width >= 40rem)
+   *   md   48rem (768px)    @media (width >= 48rem)
+   *   lg   64rem (1024px)   @media (width >= 64rem)
+   *
+   * In JS, pass the same queries to useMediaQuery, e.g.
+   * useMediaQuery("(width >= 64rem)").
+   *
+   * @custom-media will be the way to name them once browsers and the
+   * apps' CSS tooling support it; until then, keep them as comments.
+   * ------------------------------------------------------------------- */
 }
 
 /* Follow the operating system only when no explicit theme is set. */
