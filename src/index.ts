@@ -1,3 +1,4 @@
+export { mergeClassName } from "./lib/utils"
 export {
   easeInCirc,
   easeInCubic,

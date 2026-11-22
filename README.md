@@ -17,7 +17,7 @@ bun add react react-dom @base-ui/react
 ## Imports
 
 ```ts
-import { easeOutQuint } from "@rahul-choudhury/ui"
+import { easeOutQuint, mergeClassName } from "@rahul-choudhury/ui"
 import { Button, Input } from "@rahul-choudhury/ui/components"
 import {
   useMediaQuery,
@@ -51,6 +51,18 @@ for its variant, size and state. To adjust one, pass your own class:
 
 Your styles always win over the library's, because the library's styles live
 in a cascade layer and yours don't. No class merging is needed.
+
+When you write your own wrapper that has a base class and also accepts a
+`className`, use `mergeClassName`. It handles Base UI's function form of
+`className` as well as strings:
+
+```tsx
+function MenuItem({ className, ...props }: Menu.Item.Props) {
+  return (
+    <Menu.Item className={mergeClassName(styles.item, className)} {...props} />
+  )
+}
+```
 
 ## Themes
 
