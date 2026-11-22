@@ -7,6 +7,8 @@
  *
  * @parts Popover, PopoverTrigger, PopoverContent, PopoverClose
  *
+ * @styles popover.css (`.ui-popover`), popup.css (surface and open/close motion)
+ *
  * @accessibility
  * - Focus moves into popover when opened.
  * - Escape key closes the popover.
@@ -21,14 +23,14 @@
  *     <InfoIcon />
  *   </PopoverTrigger>
  *   <PopoverContent>
- *     <p className="text-sm">Additional information here.</p>
+ *     <p>Additional information here.</p>
  *   </PopoverContent>
  * </Popover>
  * ```
  */
 
 import { Popover as BasePopover } from "@base-ui/react/popover"
-import { cn, mergeClassName } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 /* ----- Root ----- */
 
@@ -60,18 +62,10 @@ function PopoverContent({
         side={side}
         align={align}
         sideOffset={sideOffset}
-        className="z-(--z-popover)"
+        className="ui-popover-positioner"
       >
         <BasePopover.Popup
-          className={mergeClassName(
-            cn(
-              "rounded-md border border-border bg-surface p-4 shadow-md",
-              "origin-(--transform-origin) transition-[opacity,scale] duration-(--duration-normal) motion-reduce:transition-none",
-              "data-starting-style:scale-95 data-starting-style:opacity-0",
-              "data-ending-style:scale-95 data-ending-style:opacity-0"
-            ),
-            className
-          )}
+          className={mergeClassName("ui-popover", className)}
           {...props}
         >
           {children}

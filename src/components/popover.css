@@ -1,0 +1,9 @@
+@layer ui {
+  .ui-popover-positioner {
+    z-index: var(--z-popover);
+  }
+
+  .ui-popover {
+    padding: var(--space-4);
+  }
+}

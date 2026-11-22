@@ -1,0 +1,97 @@
+@layer ui {
+  .ui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition-property: color, background-color, border-color, translate;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: ease-out;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    &:active {
+      translate: 0 1px;
+    }
+
+    &[data-disabled] {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    &[data-variant="primary"] {
+      background: var(--color-accent);
+      color: var(--color-accent-foreground);
+
+      &:hover {
+        background: color-mix(in oklab, var(--color-accent) 90%, transparent);
+      }
+    }
+
+    &[data-variant="secondary"] {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+
+      &:hover {
+        border-color: var(--color-border-strong);
+        background: var(--color-surface-soft);
+      }
+    }
+
+    &[data-variant="ghost"] {
+      color: var(--color-text-secondary);
+
+      &:hover {
+        background: var(--color-surface-soft);
+        color: var(--color-text);
+      }
+    }
+
+    &[data-variant="destructive"] {
+      background: var(--color-danger);
+      color: var(--color-danger-foreground);
+
+      &:hover {
+        background: color-mix(in oklab, var(--color-danger) 90%, transparent);
+      }
+    }
+
+    &[data-size="sm"] {
+      height: var(--space-8);
+      gap: var(--space-1-5);
+      padding-inline: var(--space-3);
+      font-size: var(--text-sm);
+      line-height: var(--text-sm-line-height);
+    }
+
+    &[data-size="md"] {
+      height: var(--space-9);
+      gap: var(--space-2);
+      padding-inline: var(--space-4);
+      font-size: var(--text-sm);
+      line-height: var(--text-sm-line-height);
+    }
+
+    &[data-size="lg"] {
+      height: var(--space-10);
+      gap: var(--space-2);
+      padding-inline: var(--space-5);
+      font-size: var(--text-base);
+      line-height: var(--text-base-line-height);
+    }
+
+    &[data-size="icon"] {
+      width: var(--space-9);
+      height: var(--space-9);
+    }
+  }
+}

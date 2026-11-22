@@ -1,4 +1,0 @@
-/* Prettier-only entry point: gives prettier-plugin-tailwindcss the full
-   Tailwind theme plus our tokens so it can sort every class. Not shipped. */
-@import "tailwindcss";
-@import "./src/styles/tokens.css";

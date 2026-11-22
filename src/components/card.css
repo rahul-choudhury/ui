@@ -1,0 +1,14 @@
+@layer ui {
+  .ui-card {
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+
+    &[data-variant="bordered"] {
+      border: 1px solid var(--color-border);
+    }
+
+    &[data-variant="elevated"] {
+      box-shadow: var(--shadow-md);
+    }
+  }
+}

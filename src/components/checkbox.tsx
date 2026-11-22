@@ -8,6 +8,8 @@
  *
  * @states default, hover, checked, disabled, indeterminate, invalid
  *
+ * @styles checkbox.css (`.ui-checkbox`, `.ui-checkbox-indicator`)
+ *
  * @accessibility
  * - Keyboard: Space to toggle.
  * - Pair with `FieldLabel` to provide an accessible name.
@@ -27,31 +29,17 @@
 
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
 import { CheckIcon, MinusIcon } from "@phosphor-icons/react"
-import { cn, mergeClassName } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 type CheckboxProps = React.ComponentProps<typeof BaseCheckbox.Root>
 
 export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <BaseCheckbox.Root
-      className={mergeClassName(
-        cn(
-          "inline-flex size-4 shrink-0 items-center justify-center rounded-sm border border-border bg-surface transition-colors",
-          "hover:border-border-strong",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-          "data-checked:border-accent data-checked:bg-accent",
-          "data-indeterminate:border-accent data-indeterminate:bg-accent",
-          "data-disabled:cursor-not-allowed data-disabled:opacity-50",
-          "data-invalid:border-danger data-invalid:outline-danger"
-        ),
-        className
-      )}
+      className={mergeClassName("ui-checkbox", className)}
       {...props}
     >
-      <BaseCheckbox.Indicator
-        keepMounted
-        className="flex items-center justify-center text-accent-foreground data-unchecked:not-data-indeterminate:opacity-0"
-      >
+      <BaseCheckbox.Indicator keepMounted className="ui-checkbox-indicator">
         {props.indeterminate ? (
           <MinusIcon size={12} weight="bold" />
         ) : (

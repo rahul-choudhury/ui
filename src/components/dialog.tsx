@@ -8,32 +8,34 @@
  *
  * @parts Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose
  *
+ * @styles dialog.css (`.ui-dialog` and its parts), popup.css (open/close motion)
+ *
  * @accessibility
  * - Focus is trapped inside the dialog when open.
  * - Escape key closes the dialog.
  * - Page scroll is locked when open.
  * - DialogTitle is required for screen readers (renders as h2).
+ * - Clicking the backdrop closes the dialog (AlertDialog does not).
  *
  * @example
  * ```tsx
  * <Dialog>
- *   <DialogTrigger render={<Button variant="destructive" />}>
- *     Delete
+ *   <DialogTrigger render={<Button variant="secondary" />}>
+ *     Edit profile
  *   </DialogTrigger>
  *   <DialogContent>
- *     <DialogTitle>Confirm deletion</DialogTitle>
- *     <DialogDescription>This action cannot be undone.</DialogDescription>
- *     <div className="mt-4 flex justify-end gap-2">
- *       <DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
- *       <Button variant="destructive">Delete</Button>
- *     </div>
+ *     <DialogTitle>Edit profile</DialogTitle>
+ *     <DialogDescription>Changes are visible to everyone.</DialogDescription>
+ *     <ProfileForm />
  *   </DialogContent>
  * </Dialog>
+ *
+ * // For "are you sure?" confirmations, use AlertDialog instead.
  * ```
  */
 
 import { Dialog as BaseDialog } from "@base-ui/react/dialog"
-import { cn, mergeClassName } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 /* ----- Root ----- */
 
@@ -50,24 +52,9 @@ type DialogContentProps = React.ComponentProps<typeof BaseDialog.Popup>
 function DialogContent({ className, children, ...props }: DialogContentProps) {
   return (
     <BaseDialog.Portal>
-      <BaseDialog.Backdrop
-        className={cn(
-          "fixed inset-0 z-(--z-overlay) bg-backdrop",
-          "transition-opacity duration-(--duration-slow) motion-reduce:transition-none",
-          "data-starting-style:opacity-0",
-          "data-ending-style:opacity-0"
-        )}
-      />
+      <BaseDialog.Backdrop className="ui-dialog-backdrop" />
       <BaseDialog.Popup
-        className={mergeClassName(
-          cn(
-            "fixed top-1/2 left-1/2 z-(--z-modal) w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg bg-surface p-6 shadow-overlay",
-            "transition-[opacity,scale] duration-(--duration-slow) motion-reduce:transition-none",
-            "data-starting-style:scale-95 data-starting-style:opacity-0",
-            "data-ending-style:scale-95 data-ending-style:opacity-0"
-          ),
-          className
-        )}
+        className={mergeClassName("ui-dialog", className)}
         {...props}
       >
         {children}
@@ -83,7 +70,7 @@ type DialogTitleProps = React.ComponentProps<typeof BaseDialog.Title>
 function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
     <BaseDialog.Title
-      className={mergeClassName("text-lg font-medium text-text", className)}
+      className={mergeClassName("ui-dialog-title", className)}
       {...props}
     />
   )
@@ -98,7 +85,7 @@ type DialogDescriptionProps = React.ComponentProps<
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
   return (
     <BaseDialog.Description
-      className={mergeClassName("mt-1 text-sm text-text-secondary", className)}
+      className={mergeClassName("ui-dialog-description", className)}
       {...props}
     />
   )

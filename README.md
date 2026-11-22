@@ -12,15 +12,12 @@ Install peer dependencies in the consuming app:
 
 ```sh
 bun add react react-dom @base-ui/react
-bun add -d tailwindcss
 ```
-
-`tailwindcss` v4 is required: `tokens.css` uses `@theme` and `@source`.
 
 ## Imports
 
 ```ts
-import { cn, easeOutQuint } from "@rahul-choudhury/ui"
+import { easeOutQuint } from "@rahul-choudhury/ui"
 import { Button, Input } from "@rahul-choudhury/ui/components"
 import {
   useMediaQuery,
@@ -28,16 +25,36 @@ import {
 } from "@rahul-choudhury/ui/hooks"
 ```
 
-## Tailwind Tokens
+## Styles
 
-Import the package tokens from the app global CSS:
+Import the three stylesheets once, at the top of the app's global CSS:
 
 ```css
-@import "tailwindcss";
+@import "@rahul-choudhury/ui/reset.css";
 @import "@rahul-choudhury/ui/tokens.css";
+@import "@rahul-choudhury/ui/styles.css";
 ```
 
-The semantic color tokens automatically switch between coordinated light and
+- `reset.css` is [Josh Comeau's CSS reset](https://www.joshwcomeau.com/css/custom-css-reset/)
+  (without its `#root` isolation rule: set `isolation: isolate` on your app's
+  root element yourself).
+- `tokens.css` defines the design tokens as CSS variables (`--color-text`,
+  `--space-4`, `--radius-md`, ...). Use them in your own CSS with `var()`.
+- `styles.css` holds the component styles, in the `ui` cascade layer.
+
+Each component renders a `ui-*` class (`.ui-button`) plus `data-*` attributes
+for its variant, size and state. To adjust one, pass your own class:
+
+```tsx
+<Button className={styles.wide}>Save</Button>
+```
+
+Your styles always win over the library's, because the library's styles live
+in a cascade layer and yours don't. No class merging is needed.
+
+## Themes
+
+The color tokens automatically switch between coordinated light and
 dark themes using CSS `light-dark()` and `color-scheme: light dark` when no
 explicit theme is set. This follows the operating system's color preference
 without a media query. No application-level theme provider or class is required.

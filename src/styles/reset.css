@@ -1,0 +1,103 @@
+/*
+ * Josh's Custom CSS Reset
+ * https://www.joshwcomeau.com/css/custom-css-reset/
+ *
+ * Released by Josh W. Comeau into the public domain. Changes from the
+ * original are marked below.
+ *
+ * Lives in the `reset` layer, which is declared before `ui`, so library
+ * components override it and unlayered app styles override both.
+ */
+
+@layer reset, ui;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  *:not(dialog) {
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  /*
+   * Changed: the original's `#root, #__next { isolation: isolate }` is left
+   * out. The root element differs per framework (the Next App Router has no
+   * #__next), so each app sets it on its own root.
+   */
+
+  /* Added: use the design system's font stack by default. */
+  body {
+    font-family: var(--font-sans);
+  }
+
+  /*
+   * Added: turn off transitions and animations for people who ask for
+   * reduced motion, everywhere at once. Near-zero durations instead of
+   * `none` so transitions still run and finish instantly (Base UI waits for
+   * a popup's exit transition to finish before unmounting it). !important
+   * inside the lowest layer still beats every normal declaration, layered
+   * or not.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

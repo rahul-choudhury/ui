@@ -13,10 +13,12 @@
  *   container that draws its own chrome (e.g. a chat composer)
  * @states default, hover, focus-visible, disabled, invalid
  *
+ * @styles input.css (`.ui-textarea`, keyed on `data-variant` and `data-size`)
+ *
  * @accessibility Works standalone, and integrates with `FieldRoot` for
  * labeling, validity, and description/error relationships (like `Input`).
  * The `bare` variant has no focus indicator of its own: show focus on the
- * surrounding container, e.g. with `focus-within:`.
+ * surrounding container, e.g. with `:focus-within`.
  *
  * @example
  * ```tsx
@@ -29,23 +31,7 @@
  */
 
 import { Field as BaseField } from "@base-ui/react/field"
-import { cn } from "../lib/utils"
-
-const sizeStyles = {
-  sm: "px-2.5 py-1.5 text-sm",
-  md: "px-3 py-2 text-sm",
-  lg: "px-3.5 py-2.5 text-base",
-}
-
-const variantStyles = {
-  default: cn(
-    "border border-border bg-surface transition-[border-color,box-shadow]",
-    "hover:border-border-strong",
-    "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15",
-    "aria-invalid:border-danger aria-invalid:focus-visible:border-danger aria-invalid:focus-visible:ring-danger/15"
-  ),
-  bare: "bg-transparent",
-}
+import { mergeClassName } from "../lib/utils"
 
 type TextareaProps = {
   variant?: "default" | "bare"
@@ -61,14 +47,9 @@ export function Textarea({
   return (
     <BaseField.Control
       render={<textarea />}
-      className={cn(
-        "w-full resize-y rounded-md text-text focus-visible:outline-none",
-        "placeholder:text-text-muted",
-        "disabled:cursor-not-allowed disabled:opacity-50",
-        variantStyles[variant],
-        sizeStyles[size],
-        className
-      )}
+      className={mergeClassName("ui-textarea", className)}
+      data-variant={variant}
+      data-size={size}
       // Field.Control's props are typed for <input>; at runtime they're
       // forwarded to the rendered <textarea>, so the public props stay
       // correctly typed as textarea props.

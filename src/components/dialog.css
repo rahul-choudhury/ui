@@ -1,0 +1,36 @@
+@layer ui {
+  .ui-dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--color-backdrop);
+  }
+
+  .ui-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: var(--z-modal);
+    width: 100%;
+    max-width: 28rem;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-overlay);
+    translate: -50% -50%;
+  }
+
+  .ui-dialog-title {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg-line-height);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+
+  .ui-dialog-description {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm-line-height);
+    color: var(--color-text-secondary);
+  }
+}

@@ -1,0 +1,37 @@
+@layer ui {
+  .ui-dialog-backdrop,
+  .ui-dialog,
+  .ui-popover,
+  .ui-select-popup {
+    transition-property: opacity, scale;
+    transition-duration: var(--duration-normal);
+    transition-timing-function: var(--ease-out-quint);
+
+    &[data-starting-style],
+    &[data-ending-style] {
+      opacity: 0;
+    }
+
+    &[data-ending-style] {
+      transition-duration: var(--duration-fast);
+    }
+  }
+
+  .ui-dialog,
+  .ui-popover,
+  .ui-select-popup {
+    &[data-starting-style],
+    &[data-ending-style] {
+      scale: 0.95;
+    }
+  }
+
+  .ui-popover,
+  .ui-select-popup {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-md);
+    transform-origin: var(--transform-origin);
+  }
+}

@@ -8,19 +8,21 @@
  * - `plain`: surface only, no border or shadow
  * - `elevated`: subtle shadow for floating/prominent content
  *
+ * @styles card.css (`.ui-card`, keyed on `data-variant`)
+ *
  * @accessibility Renders a `<div>`. Add role="region" and aria-label
  * when the card represents a distinct landmark.
  *
  * @example
  * ```tsx
- * <Card className="p-6">
+ * <Card className={styles.card}>
  *   <h3>Title</h3>
  *   <p>Content</p>
  * </Card>
  * ```
  */
 
-import { cn } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 type CardProps = {
   variant?: "bordered" | "plain" | "elevated"
@@ -29,12 +31,8 @@ type CardProps = {
 export function Card({ variant = "bordered", className, ...props }: CardProps) {
   return (
     <div
-      className={cn(
-        "rounded-md bg-surface",
-        variant === "bordered" && "border border-border",
-        variant === "elevated" && "shadow-md",
-        className
-      )}
+      className={mergeClassName("ui-card", className)}
+      data-variant={variant}
       {...props}
     />
   )

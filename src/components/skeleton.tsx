@@ -2,27 +2,25 @@
  * Skeleton
  *
  * Placeholder for content that is loading. Renders a pulsing
- * block sized by the consumer via className (h-*, w-*, rounded-*).
+ * block sized by the consumer via className or style.
+ *
+ * @styles skeleton.css (`.ui-skeleton`)
  *
  * @example
  * ```tsx
- * <Skeleton className="h-4 w-48" />
- * <Skeleton className="h-10 w-full rounded-md" />
- * <Skeleton className="size-10 rounded-full" />
+ * <Skeleton className={styles.titleLine} />
+ * <Skeleton style={{ width: "60%", height: 16 }} />
  * ```
  */
 
-import { cn } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 type SkeletonProps = React.ComponentProps<"div">
 
 export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
-      className={cn(
-        "animate-pulse rounded-md bg-surface-soft motion-reduce:animate-none",
-        className
-      )}
+      className={mergeClassName("ui-skeleton", className)}
       aria-hidden="true"
       {...props}
     />

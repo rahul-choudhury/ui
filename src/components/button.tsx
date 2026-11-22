@@ -6,8 +6,10 @@
  * Primary interactive element for triggering actions.
  *
  * @variants primary | secondary | ghost | destructive
- * @sizes sm (h-8) | md (h-9) | lg (h-10) | icon (size-9)
+ * @sizes sm (32px) | md (36px) | lg (40px) | icon (36px square)
  * @states default, hover, focus-visible, active, disabled
+ *
+ * @styles button.css (`.ui-button`, keyed on `data-variant` and `data-size`)
  *
  * @accessibility Renders native `<button>`. Focus ring on :focus-visible only.
  *
@@ -19,7 +21,7 @@
  */
 
 import { Button as BaseButton } from "@base-ui/react/button"
-import { cn, mergeClassName } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 type ButtonProps = {
   variant?: "primary" | "secondary" | "ghost" | "destructive"
@@ -34,24 +36,9 @@ export function Button({
 }: ButtonProps) {
   return (
     <BaseButton
-      className={mergeClassName(
-        cn(
-          "inline-flex cursor-pointer items-center justify-center font-medium transition-[color,background-color,border-color,transform] duration-(--duration-fast) ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:translate-y-px data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none",
-          variant === "primary" &&
-            "bg-accent text-accent-foreground hover:bg-accent/90",
-          variant === "secondary" &&
-            "border border-border bg-surface text-text hover:border-border-strong hover:bg-surface-soft",
-          variant === "ghost" &&
-            "text-text-secondary hover:bg-surface-soft hover:text-text",
-          variant === "destructive" &&
-            "bg-danger text-danger-foreground hover:bg-danger/90",
-          size === "sm" && "h-8 gap-1.5 rounded-md px-3 text-sm",
-          size === "md" && "h-9 gap-2 rounded-md px-4 text-sm",
-          size === "lg" && "h-10 gap-2 rounded-md px-5 text-base",
-          size === "icon" && "size-9 rounded-md"
-        ),
-        className
-      )}
+      className={mergeClassName("ui-button", className)}
+      data-variant={variant}
+      data-size={size}
       {...props}
     />
   )

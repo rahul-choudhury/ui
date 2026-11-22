@@ -4,10 +4,12 @@
  * Centered placeholder shown when a view has no content.
  *
  * @props
- * - `icon`: optional decorative icon (renders at text-text-muted)
+ * - `icon`: optional decorative icon (rendered in the muted text colour)
  * - `title`: required heading text
  * - `description`: optional supporting text
  * - `action`: optional CTA (e.g. a Button)
+ *
+ * @styles empty-state.css (`.ui-empty-state` and its parts)
  *
  * @example
  * ```tsx
@@ -20,7 +22,7 @@
  * ```
  */
 
-import { cn } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 type EmptyStateProps = {
   icon?: React.ReactNode
@@ -38,16 +40,13 @@ export function EmptyState({
   ...props
 }: EmptyStateProps) {
   return (
-    <div
-      className={cn("flex flex-col items-center py-12 text-center", className)}
-      {...props}
-    >
-      {icon && <div className="mb-4 text-text-muted">{icon}</div>}
-      <p className="text-base font-medium text-text">{title}</p>
+    <div className={mergeClassName("ui-empty-state", className)} {...props}>
+      {icon && <div className="ui-empty-state-icon">{icon}</div>}
+      <p className="ui-empty-state-title">{title}</p>
       {description && (
-        <p className="mt-1 text-sm text-text-muted">{description}</p>
+        <p className="ui-empty-state-description">{description}</p>
       )}
-      {action && <div className="mt-4">{action}</div>}
+      {action && <div className="ui-empty-state-action">{action}</div>}
     </div>
   )
 }

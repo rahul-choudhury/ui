@@ -7,12 +7,14 @@
  *
  * @parts FieldRoot, FieldLabel, FieldDescription, FieldControl, FieldItem, FieldError, FieldValidity
  *
+ * @styles field.css (`.ui-field` and its parts)
+ *
  * @usage
  * - Use `FieldRoot` to scope labels, descriptions, errors, and controls.
  * - Use `FieldControl` directly for custom controls, or pair `FieldRoot`
- *   with field-aware primitives like `Input`, `Textarea`, `Select`, `Checkbox`,
- *   `Radio`, and `Switch`.
- * - Use `FieldItem` for nested field items, such as radio groups.
+ *   with field-aware primitives like `Input`, `Textarea`, `Select` and
+ *   `Checkbox`.
+ * - Use `FieldItem` for nested field items, such as a group of checkboxes.
  *
  * @example
  * ```tsx
@@ -25,7 +27,7 @@
  */
 
 import { Field as BaseField } from "@base-ui/react/field"
-import { cn, mergeClassName } from "../lib/utils"
+import { mergeClassName } from "../lib/utils"
 
 const FieldControl = BaseField.Control
 const FieldValidity = BaseField.Validity
@@ -35,7 +37,7 @@ type FieldRootProps = React.ComponentProps<typeof BaseField.Root>
 function FieldRoot({ className, ...props }: FieldRootProps) {
   return (
     <BaseField.Root
-      className={mergeClassName("flex flex-col gap-1.5", className)}
+      className={mergeClassName("ui-field", className)}
       {...props}
     />
   )
@@ -54,17 +56,12 @@ function FieldLabel({
 }: FieldLabelProps) {
   return (
     <BaseField.Label
-      className={mergeClassName(
-        cn(
-          "text-sm font-medium text-text data-disabled:cursor-not-allowed data-disabled:opacity-50"
-        ),
-        className
-      )}
+      className={mergeClassName("ui-field-label", className)}
       {...props}
     >
       {children}
       {required && (
-        <span className="ml-0.5 text-danger" aria-hidden="true">
+        <span className="ui-field-label-required" aria-hidden="true">
           *
         </span>
       )}
@@ -77,7 +74,7 @@ type FieldDescriptionProps = React.ComponentProps<typeof BaseField.Description>
 function FieldDescription({ className, ...props }: FieldDescriptionProps) {
   return (
     <BaseField.Description
-      className={mergeClassName("text-sm text-text-muted", className)}
+      className={mergeClassName("ui-field-description", className)}
       {...props}
     />
   )
@@ -88,7 +85,7 @@ type FieldItemProps = React.ComponentProps<typeof BaseField.Item>
 function FieldItem({ className, ...props }: FieldItemProps) {
   return (
     <BaseField.Item
-      className={mergeClassName("flex flex-col gap-1.5", className)}
+      className={mergeClassName("ui-field-item", className)}
       {...props}
     />
   )
@@ -100,7 +97,7 @@ function FieldError({ className, ...props }: FieldErrorProps) {
   return (
     <BaseField.Error
       role="alert"
-      className={mergeClassName("text-sm text-danger", className)}
+      className={mergeClassName("ui-field-error", className)}
       {...props}
     />
   )

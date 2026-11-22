@@ -1,4 +1,3 @@
-export { cn } from "./lib/utils"
 export {
   easeInCirc,
   easeInCubic,

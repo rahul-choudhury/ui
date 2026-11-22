@@ -10,15 +10,18 @@
  * - `default`: bordered field with hover, focus and invalid styles
  * - `bare`: no border, background or focus ring, for embedding in a
  *   container that draws its own chrome (e.g. a search bar)
- * @sizes sm (h-8) | md (h-9) | lg (h-10)
+ * @sizes sm (32px) | md (36px) | lg (40px)
  * @states default, hover, focus-visible, disabled, invalid
+ *
+ * @styles input.css (`.ui-input`, keyed on `data-variant` and `data-size`;
+ *   shares its base and variant styles with `Textarea`)
  *
  * @accessibility
  * - Renders Base UI `Input`, which uses a native `<input>` element.
  * - Automatically integrates with `FieldRoot` for labeling, validity, and
  *   description/error relationships.
  * - The `bare` variant has no focus indicator of its own: show focus on the
- *   surrounding container, e.g. with `focus-within:`.
+ *   surrounding container, e.g. with `:focus-within`.
  *
  * @example
  * ```tsx
@@ -35,23 +38,7 @@
  */
 
 import { Input as BaseInput } from "@base-ui/react/input"
-import { cn, mergeClassName } from "../lib/utils"
-
-const sizeStyles = {
-  sm: "h-8 px-2.5 text-sm",
-  md: "h-9 px-3 text-sm",
-  lg: "h-10 px-3.5 text-base",
-}
-
-const variantStyles = {
-  default: cn(
-    "border border-border bg-surface transition-[border-color,box-shadow]",
-    "hover:border-border-strong",
-    "focus-visible:border-accent focus-visible:ring-3 focus-visible:ring-accent/15",
-    "aria-invalid:border-danger aria-invalid:focus-visible:border-danger aria-invalid:focus-visible:ring-danger/15"
-  ),
-  bare: "bg-transparent",
-}
+import { mergeClassName } from "../lib/utils"
 
 type InputProps = {
   variant?: "default" | "bare"
@@ -66,16 +53,9 @@ export function Input({
 }: InputProps) {
   return (
     <BaseInput
-      className={mergeClassName(
-        cn(
-          "w-full rounded-md text-text focus-visible:outline-none",
-          "placeholder:text-text-muted",
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          variantStyles[variant],
-          sizeStyles[size]
-        ),
-        className
-      )}
+      className={mergeClassName("ui-input", className)}
+      data-variant={variant}
+      data-size={size}
       {...props}
     />
   )
