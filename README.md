@@ -64,6 +64,53 @@ function MenuItem({ className, ...props }: Menu.Item.Props) {
 }
 ```
 
+## Editor autocomplete
+
+To get token suggestions while typing `var(--`, use
+[css-variables-language-server](https://github.com/vunguyentuan/vscode-css-variables).
+It skips `node_modules` by default, so point it at the tokens file explicitly.
+
+**VS Code:** install the
+[CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables)
+extension and add this to the project's `.vscode/settings.json`:
+
+```json
+{
+  "cssVariables.lookupFiles": [
+    "**/*.css",
+    "node_modules/@rahul-choudhury/ui/dist/styles/tokens.css"
+  ]
+}
+```
+
+To have VS Code suggest the extension to anyone who opens the project, add
+`.vscode/extensions.json`:
+
+```json
+{
+  "recommendations": ["vunguyentuan.vscode-css-variables"]
+}
+```
+
+**Neovim:** install the server (`bun add -g css-variables-language-server` or
+`npm i -g css-variables-language-server`), then enable it with
+[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)'s `css_variables`
+config:
+
+```lua
+vim.lsp.config("css_variables", {
+  settings = {
+    cssVariables = {
+      lookupFiles = {
+        "**/*.css",
+        "node_modules/@rahul-choudhury/ui/dist/styles/tokens.css",
+      },
+    },
+  },
+})
+vim.lsp.enable("css_variables")
+```
+
 ## Themes
 
 The color tokens automatically switch between coordinated light and
